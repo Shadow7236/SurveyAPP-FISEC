@@ -12,11 +12,11 @@ struct ContentView: View {
     
 
     var body: some View {
-        TabView{
-            Text("PROFILE").tabItem { Label("Profile", systemImage: "person.fill") }
+        TabView {
             MainView().tabItem { Label("Home", systemImage: "house") }
-            Text("SHOP").tabItem { Label("Shop", systemImage: "bag.fill") }
-            Text("CREATE").tabItem { Label("Create", systemImage: "plus") }
+            UserProfileView().tabItem { Label("Profile", systemImage: "person.fill")}
+            ShopView().tabItem { Label("Shop", systemImage: "bag.fill") }
+            CreateSurveyView().tabItem { Label("Create", systemImage: "plus") }
         }
     }
 
