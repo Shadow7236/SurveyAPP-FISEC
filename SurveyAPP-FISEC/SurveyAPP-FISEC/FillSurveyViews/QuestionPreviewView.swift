@@ -8,16 +8,17 @@
 import SwiftUI
 
 struct QuestionPreviewView: View {
+    var question: Question?
+    
     var body: some View {
         VStack {
             HStack {
-                Text("Question").font(.title)
+                Text(question?.qText ?? "").font(.title3)
                 Spacer()
             }
             HStack {
-                Text("Type")
+                Text(question?.qType.rawValue ?? "")
                 Spacer()
-                Text("Options: 10")
             }
         }.padding()
     }
@@ -25,6 +26,6 @@ struct QuestionPreviewView: View {
 
 struct QuestionPreviewView_Previews: PreviewProvider {
     static var previews: some View {
-        QuestionPreviewView().previewDevice("iPhone 11")
+        QuestionPreviewView(question: nil).previewDevice("iPhone 11")
     }
 }

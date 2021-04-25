@@ -2,43 +2,28 @@
 //  MainView.swift
 //  SurveyAPP-FISEC
 //
-//  Created by Radovan Klembara on 10/02/2021.
+//  Created by Radovan Klembara on 01/04/2021.
 //
 
+import Combine
 import SwiftUI
 
+
 struct MainView: View {
-    
+    @Binding var redraw: Bool
     
     var body: some View {
-        NavigationView{
-            List {
-                MainPageSurveyPreview()
-                MainPageSurveyPreview()
-                MainPageSurveyPreview()
-                MainPageSurveyPreview()
-                MainPageSurveyPreview()
-                MainPageSurveyPreview()
-                MainPageSurveyPreview()
-                MainPageSurveyPreview()
-                MainPageSurveyPreview()
-                MainPageSurveyPreview()
-            }.listStyle(PlainListStyle())
-            .navigationBarTitle(Text("Surveys"), displayMode: .inline)
-            .navigationBarItems(leading: HStack {
-                Text("400")
-                Image(systemName: "circlebadge.2.fill")
-            }.foregroundColor(.blue), trailing: HStack {
-                Text("Filter")
-                Image(systemName: "line.horizontal.3.decrease")
-            }.foregroundColor(.blue))
+        TabView {
+            BrowseNewSurveysView().tabItem { Label("Home", systemImage: "house") } // TODO timestamp?
+            UserProfileLoadView(redraw: $redraw).tabItem { Label("Profile", systemImage: "person.fill")}
+            ShopView().tabItem { Label("Shop", systemImage: "bag.fill") }
+            CreateSurveyView().tabItem { Label("Create", systemImage: "plus")}
         }
-        
     }
 }
 
 struct MainView_Previews: PreviewProvider {
     static var previews: some View {
-        MainView().previewDevice("iPhone 11")
+        MainView(redraw: .constant(false)).previewDevice("iPhone 11")
     }
 }

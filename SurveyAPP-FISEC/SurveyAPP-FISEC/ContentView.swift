@@ -6,27 +6,34 @@
 //
 
 import SwiftUI
-import CoreData
+import Defaults
 
 struct ContentView: View {
+    @Default(.token) var tok
+    @Default(.userID) var userID
     
-
+    @State var register: Bool = false
+    
+    @State var usrID: String? = nil
+    @State var token: String? = nil
+    
+    @State var redraw: Bool = false
+    
     var body: some View {
-        TabView {
-            MainView().tabItem { Label("Home", systemImage: "house") }
-            UserProfileView().tabItem { Label("Profile", systemImage: "person.fill")}
-            ShopView().tabItem { Label("Shop", systemImage: "bag.fill") }
-            CreateSurveyView().tabItem { Label("Create", systemImage: "plus") }
+        if tok != nil {
+            MainView(redraw: $redraw).onAppear(perform: {
+                print(tok ?? "No token") // TODO DELETE
+            })
+        } else {
+            LogInView()
         }
     }
-
-    
 }
 
 
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext).previewDevice("iPhone 11")
+        ContentView().previewDevice("iPhone 11")
     }
 }

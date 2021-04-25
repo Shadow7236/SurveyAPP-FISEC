@@ -3,10 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1A0054A92610E6C800D5B39B /* UserProfileLoadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A0054A82610E6C800D5B39B /* UserProfileLoadView.swift */; };
 		1A2E5B9725D14EC60099051B /* SurveyAPP_FISECApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A2E5B9625D14EC60099051B /* SurveyAPP_FISECApp.swift */; };
 		1A2E5B9925D14EC60099051B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A2E5B9825D14EC60099051B /* ContentView.swift */; };
 		1A2E5B9B25D14EC70099051B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A2E5B9A25D14EC70099051B /* Assets.xcassets */; };
@@ -18,11 +19,60 @@
 		1A36F3C025D961E0009C0DA5 /* MainPageSurveyPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A36F3BF25D961E0009C0DA5 /* MainPageSurveyPreview.swift */; };
 		1A63A52125DD71A900F78B7E /* CreateQuestionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A63A52025DD71A900F78B7E /* CreateQuestionView.swift */; };
 		1A63A52C25DD730700F78B7E /* CreateSurveyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A63A52B25DD730600F78B7E /* CreateSurveyView.swift */; };
+		1A7EA783262EDDBD0071A86D /* helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A7EA782262EDDBD0071A86D /* helpers.swift */; };
+		1A7EA788262EF3020071A86D /* ExportResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A7EA787262EF3020071A86D /* ExportResults.swift */; };
+		1A7EA79F262F1DBD0071A86D /* AddedCouponsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A7EA79E262F1DBD0071A86D /* AddedCouponsView.swift */; };
+		1A7EA7A4262F1E830071A86D /* AddedCCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A7EA7A3262F1E830071A86D /* AddedCCardView.swift */; };
+		1A87DA27260DD2C7003DF616 /* ClosedSelectMultipleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A87DA26260DD2C7003DF616 /* ClosedSelectMultipleView.swift */; };
+		1A87DA2C260DEB4B003DF616 /* CombinedSelectOneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A87DA2B260DEB4B003DF616 /* CombinedSelectOneView.swift */; };
+		1A87DA31260E06B3003DF616 /* CombinedSelectMultipleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A87DA30260E06B3003DF616 /* CombinedSelectMultipleView.swift */; };
+		1A87DA3A260E39CA003DF616 /* AddCouponSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A87DA39260E39CA003DF616 /* AddCouponSheetView.swift */; };
+		1A89A6FB26348F12003F7102 /* SwiftUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A89A6FA26348F12003F7102 /* SwiftUIView.swift */; };
 		1A8FEB2E25DA9B0E00F128CE /* UserProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A8FEB2D25DA9B0E00F128CE /* UserProfileView.swift */; };
+		1A9193E32615BE79009882A8 /* BuyCouponModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A9193E22615BE79009882A8 /* BuyCouponModel.swift */; };
+		1A9193E92615D7DF009882A8 /* Defaults in Frameworks */ = {isa = PBXBuildFile; productRef = 1A9193E82615D7DF009882A8 /* Defaults */; };
+		1A9193EE2615D809009882A8 /* LogInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A9193ED2615D809009882A8 /* LogInView.swift */; };
+		1A9193F32615DF56009882A8 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A9193F22615DF56009882A8 /* UserData.swift */; };
+		1A9194002615EB09009882A8 /* BrowseNewSurveysView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A9193FF2615EB09009882A8 /* BrowseNewSurveysView.swift */; };
+		1A919405261600A1009882A8 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A919404261600A1009882A8 /* SignUpView.swift */; };
+		1A91941226160690009882A8 /* SignUserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A91941126160690009882A8 /* SignUserModel.swift */; };
+		1A91941D26162070009882A8 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A91941C26162070009882A8 /* MainView.swift */; };
+		1A91AACD261359C000022994 /* MyQuestionairesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A91AACC261359C000022994 /* MyQuestionairesModel.swift */; };
+		1A91AAD22613697900022994 /* ResultModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A91AAD12613697900022994 /* ResultModel.swift */; };
+		1A9E7055260F4453006240F0 /* MySurveysView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A9E7054260F4453006240F0 /* MySurveysView.swift */; };
+		1A9E705A260F459D006240F0 /* QuestionaireResultsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A9E7059260F459D006240F0 /* QuestionaireResultsView.swift */; };
+		1A9E7062260F4936006240F0 /* EditProfileSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A9E7061260F4936006240F0 /* EditProfileSheetView.swift */; };
+		1A9E7067260F7031006240F0 /* QuestionResultDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A9E7066260F7031006240F0 /* QuestionResultDetailView.swift */; };
+		1A9E706C260FA1D2006240F0 /* PieCharClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A9E706B260FA1D2006240F0 /* PieCharClass.swift */; };
+		1A9E7071260FA281006240F0 /* PieChartSlideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A9E7070260FA281006240F0 /* PieChartSlideView.swift */; };
+		1AA38A1C2620447900B274AA /* PlaceHolderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA38A1B2620447900B274AA /* PlaceHolderView.swift */; };
+		1AA38A2C2620A37A00B274AA /* BoughtCouponsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA38A2B2620A37A00B274AA /* BoughtCouponsView.swift */; };
+		1AA38A312620A41400B274AA /* BoughtCouponsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA38A302620A41400B274AA /* BoughtCouponsModel.swift */; };
+		1AA38A362620A92400B274AA /* BoughtCCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA38A352620A92400B274AA /* BoughtCCardView.swift */; };
+		1AA38A3B2620AD2100B274AA /* BoughtCouponCodeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA38A3A2620AD2100B274AA /* BoughtCouponCodeModel.swift */; };
+		1AA66757260A1E6100188933 /* QuestionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA66756260A1E6100188933 /* QuestionView.swift */; };
+		1AA6675C260A22FC00188933 /* ProgressBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA6675B260A22FC00188933 /* ProgressBarView.swift */; };
+		1AA66761260A267100188933 /* AnswerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA66760260A267100188933 /* AnswerView.swift */; };
+		1AA6676B260A27B900188933 /* QuestionStructs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA6676A260A27B900188933 /* QuestionStructs.swift */; };
+		1AA66787260A2E4D00188933 /* OpenedQuestionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA66786260A2E4D00188933 /* OpenedQuestionView.swift */; };
+		1AA760E3262D7D0200EAE73F /* EditQuestionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA760E2262D7D0200EAE73F /* EditQuestionView.swift */; };
+		1AA85A22260B396D00CA318E /* ClosedSelectOneQuestionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA85A21260B396D00CA318E /* ClosedSelectOneQuestionView.swift */; };
 		1AAE00FA25DE94E000D09A21 /* QuestionPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AAE00F925DE94E000D09A21 /* QuestionPreviewView.swift */; };
+		1ABB9BA6260116E500CB2E6D /* DataReceiveSend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ABB9BA5260116E500CB2E6D /* DataReceiveSend.swift */; };
+		1ABC8716261F281B00ACADD8 /* TagModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ABC8715261F281B00ACADD8 /* TagModel.swift */; };
+		1ABC871B261F3C8B00ACADD8 /* TagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ABC871A261F3C8B00ACADD8 /* TagView.swift */; };
+		1AC1DCE8261C86DD00218FB0 /* QnairesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC1DCE7261C86DD00218FB0 /* QnairesModel.swift */; };
 		1AC858DC25DFCADD0040D2C3 /* ShopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC858DB25DFCADD0040D2C3 /* ShopView.swift */; };
 		1AC858E125DFCBC20040D2C3 /* CouponBuyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC858E025DFCBC20040D2C3 /* CouponBuyView.swift */; };
-		1AF422E725D42A7B00EDE106 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AF422E625D42A7B00EDE106 /* MainView.swift */; };
+		1AC8F24E2614D39100754A78 /* AddedCouponModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC8F24D2614D39100754A78 /* AddedCouponModel.swift */; };
+		1AD50A792612116E00D4CB2E /* URLSessionExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD50A782612116E00D4CB2E /* URLSessionExtension.swift */; };
+		1AD50A7E261211AA00D4CB2E /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD50A7D261211AA00D4CB2E /* UserModel.swift */; };
+		1AD50A832612124900D4CB2E /* QuestionaireModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD50A822612124900D4CB2E /* QuestionaireModel.swift */; };
+		1AD50A882612129200D4CB2E /* GeneralModelClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD50A872612129200D4CB2E /* GeneralModelClass.swift */; };
+		1AD50A8D261219B000D4CB2E /* QuestionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD50A8C261219B000D4CB2E /* QuestionModel.swift */; };
+		1AD50A9226121E8000D4CB2E /* AnswerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD50A9126121E8000D4CB2E /* AnswerModel.swift */; };
+		1ADA1E1E260B41D60085DB39 /* AddTagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADA1E1D260B41D60085DB39 /* AddTagView.swift */; };
+		1AEE0B41260906FB00D94FF8 /* SurveyMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AEE0B40260906FB00D94FF8 /* SurveyMainView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,6 +93,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1A0054A82610E6C800D5B39B /* UserProfileLoadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileLoadView.swift; sourceTree = "<group>"; };
 		1A2E5B9325D14EC60099051B /* SurveyAPP-FISEC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SurveyAPP-FISEC.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A2E5B9625D14EC60099051B /* SurveyAPP_FISECApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyAPP_FISECApp.swift; sourceTree = "<group>"; };
 		1A2E5B9825D14EC60099051B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -60,11 +111,59 @@
 		1A36F3BF25D961E0009C0DA5 /* MainPageSurveyPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPageSurveyPreview.swift; sourceTree = "<group>"; };
 		1A63A52025DD71A900F78B7E /* CreateQuestionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateQuestionView.swift; sourceTree = "<group>"; };
 		1A63A52B25DD730600F78B7E /* CreateSurveyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateSurveyView.swift; sourceTree = "<group>"; };
+		1A7EA782262EDDBD0071A86D /* helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = helpers.swift; sourceTree = "<group>"; };
+		1A7EA787262EF3020071A86D /* ExportResults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportResults.swift; sourceTree = "<group>"; };
+		1A7EA79E262F1DBD0071A86D /* AddedCouponsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddedCouponsView.swift; sourceTree = "<group>"; };
+		1A7EA7A3262F1E830071A86D /* AddedCCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddedCCardView.swift; sourceTree = "<group>"; };
+		1A87DA26260DD2C7003DF616 /* ClosedSelectMultipleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClosedSelectMultipleView.swift; sourceTree = "<group>"; };
+		1A87DA2B260DEB4B003DF616 /* CombinedSelectOneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombinedSelectOneView.swift; sourceTree = "<group>"; };
+		1A87DA30260E06B3003DF616 /* CombinedSelectMultipleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombinedSelectMultipleView.swift; sourceTree = "<group>"; };
+		1A87DA39260E39CA003DF616 /* AddCouponSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCouponSheetView.swift; sourceTree = "<group>"; };
+		1A89A6FA26348F12003F7102 /* SwiftUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIView.swift; sourceTree = "<group>"; };
 		1A8FEB2D25DA9B0E00F128CE /* UserProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileView.swift; sourceTree = "<group>"; };
+		1A9193E22615BE79009882A8 /* BuyCouponModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuyCouponModel.swift; sourceTree = "<group>"; };
+		1A9193ED2615D809009882A8 /* LogInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInView.swift; sourceTree = "<group>"; };
+		1A9193F22615DF56009882A8 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
+		1A9193FF2615EB09009882A8 /* BrowseNewSurveysView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowseNewSurveysView.swift; sourceTree = "<group>"; };
+		1A919404261600A1009882A8 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
+		1A91941126160690009882A8 /* SignUserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUserModel.swift; sourceTree = "<group>"; };
+		1A91941C26162070009882A8 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		1A91AACC261359C000022994 /* MyQuestionairesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQuestionairesModel.swift; sourceTree = "<group>"; };
+		1A91AAD12613697900022994 /* ResultModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultModel.swift; sourceTree = "<group>"; };
+		1A9E7054260F4453006240F0 /* MySurveysView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySurveysView.swift; sourceTree = "<group>"; };
+		1A9E7059260F459D006240F0 /* QuestionaireResultsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionaireResultsView.swift; sourceTree = "<group>"; };
+		1A9E7061260F4936006240F0 /* EditProfileSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileSheetView.swift; sourceTree = "<group>"; };
+		1A9E7066260F7031006240F0 /* QuestionResultDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionResultDetailView.swift; sourceTree = "<group>"; };
+		1A9E706B260FA1D2006240F0 /* PieCharClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieCharClass.swift; sourceTree = "<group>"; };
+		1A9E7070260FA281006240F0 /* PieChartSlideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieChartSlideView.swift; sourceTree = "<group>"; };
+		1AA38A1B2620447900B274AA /* PlaceHolderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceHolderView.swift; sourceTree = "<group>"; };
+		1AA38A2B2620A37A00B274AA /* BoughtCouponsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoughtCouponsView.swift; sourceTree = "<group>"; };
+		1AA38A302620A41400B274AA /* BoughtCouponsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoughtCouponsModel.swift; sourceTree = "<group>"; };
+		1AA38A352620A92400B274AA /* BoughtCCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoughtCCardView.swift; sourceTree = "<group>"; };
+		1AA38A3A2620AD2100B274AA /* BoughtCouponCodeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoughtCouponCodeModel.swift; sourceTree = "<group>"; };
+		1AA66756260A1E6100188933 /* QuestionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionView.swift; sourceTree = "<group>"; };
+		1AA6675B260A22FC00188933 /* ProgressBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBarView.swift; sourceTree = "<group>"; };
+		1AA66760260A267100188933 /* AnswerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerView.swift; sourceTree = "<group>"; };
+		1AA6676A260A27B900188933 /* QuestionStructs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = QuestionStructs.swift; path = "SurveyAPP-FISEC/HandlingData/QuestionStructs.swift"; sourceTree = SOURCE_ROOT; };
+		1AA66786260A2E4D00188933 /* OpenedQuestionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenedQuestionView.swift; sourceTree = "<group>"; };
+		1AA760E2262D7D0200EAE73F /* EditQuestionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditQuestionView.swift; sourceTree = "<group>"; };
+		1AA85A21260B396D00CA318E /* ClosedSelectOneQuestionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClosedSelectOneQuestionView.swift; sourceTree = "<group>"; };
 		1AAE00F925DE94E000D09A21 /* QuestionPreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionPreviewView.swift; sourceTree = "<group>"; };
+		1ABB9BA5260116E500CB2E6D /* DataReceiveSend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DataReceiveSend.swift; path = "SurveyAPP-FISEC/HandlingData/DataReceiveSend.swift"; sourceTree = SOURCE_ROOT; };
+		1ABC8715261F281B00ACADD8 /* TagModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagModel.swift; sourceTree = "<group>"; };
+		1ABC871A261F3C8B00ACADD8 /* TagView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagView.swift; sourceTree = "<group>"; };
+		1AC1DCE7261C86DD00218FB0 /* QnairesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QnairesModel.swift; sourceTree = "<group>"; };
 		1AC858DB25DFCADD0040D2C3 /* ShopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopView.swift; sourceTree = "<group>"; };
 		1AC858E025DFCBC20040D2C3 /* CouponBuyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CouponBuyView.swift; sourceTree = "<group>"; };
-		1AF422E625D42A7B00EDE106 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		1AC8F24D2614D39100754A78 /* AddedCouponModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddedCouponModel.swift; sourceTree = "<group>"; };
+		1AD50A782612116E00D4CB2E /* URLSessionExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionExtension.swift; sourceTree = "<group>"; };
+		1AD50A7D261211AA00D4CB2E /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
+		1AD50A822612124900D4CB2E /* QuestionaireModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionaireModel.swift; sourceTree = "<group>"; };
+		1AD50A872612129200D4CB2E /* GeneralModelClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralModelClass.swift; sourceTree = "<group>"; };
+		1AD50A8C261219B000D4CB2E /* QuestionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionModel.swift; sourceTree = "<group>"; };
+		1AD50A9126121E8000D4CB2E /* AnswerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerModel.swift; sourceTree = "<group>"; };
+		1ADA1E1D260B41D60085DB39 /* AddTagView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTagView.swift; sourceTree = "<group>"; };
+		1AEE0B40260906FB00D94FF8 /* SurveyMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyMainView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +171,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1A9193E92615D7DF009882A8 /* Defaults in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -92,6 +192,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1A0054A42610722E00D5B39B /* UserProfile */ = {
+			isa = PBXGroup;
+			children = (
+				1A0054A82610E6C800D5B39B /* UserProfileLoadView.swift */,
+				1A8FEB2D25DA9B0E00F128CE /* UserProfileView.swift */,
+				1A7EA79E262F1DBD0071A86D /* AddedCouponsView.swift */,
+				1A7EA7A3262F1E830071A86D /* AddedCCardView.swift */,
+				1A9E7061260F4936006240F0 /* EditProfileSheetView.swift */,
+				1AA38A2B2620A37A00B274AA /* BoughtCouponsView.swift */,
+				1AA38A352620A92400B274AA /* BoughtCCardView.swift */,
+				1A9E7054260F4453006240F0 /* MySurveysView.swift */,
+				1A9E7070260FA281006240F0 /* PieChartSlideView.swift */,
+				1A9E7059260F459D006240F0 /* QuestionaireResultsView.swift */,
+				1A9E7066260F7031006240F0 /* QuestionResultDetailView.swift */,
+			);
+			path = UserProfile;
+			sourceTree = "<group>";
+		};
 		1A2E5B8A25D14EC60099051B = {
 			isa = PBXGroup;
 			children = (
@@ -117,13 +235,17 @@
 			children = (
 				1A2E5B9625D14EC60099051B /* SurveyAPP_FISECApp.swift */,
 				1A2E5B9825D14EC60099051B /* ContentView.swift */,
-				1AC858DB25DFCADD0040D2C3 /* ShopView.swift */,
-				1AC858E025DFCBC20040D2C3 /* CouponBuyView.swift */,
+				1A91941C26162070009882A8 /* MainView.swift */,
+				1A89A6FA26348F12003F7102 /* SwiftUIView.swift */,
+				1A919404261600A1009882A8 /* SignUpView.swift */,
+				1A9193ED2615D809009882A8 /* LogInView.swift */,
+				1AC8F2552614E83500754A78 /* ShopViews */,
+				1AA66776260A289500188933 /* HandlingData */,
 				1A63A51C25DD6F3400F78B7E /* CreateSurvey */,
-				1A8FEB2D25DA9B0E00F128CE /* UserProfileView.swift */,
-				1AF422E625D42A7B00EDE106 /* MainView.swift */,
-				1A36F3BF25D961E0009C0DA5 /* MainPageSurveyPreview.swift */,
-				1AAE00F925DE94E000D09A21 /* QuestionPreviewView.swift */,
+				1A0054A42610722E00D5B39B /* UserProfile */,
+				1A87DA35260E13C9003DF616 /* FillSurveyViews */,
+				1A91DC472631BCFF00875B5F /* TagViews */,
+				1AA38A1B2620447900B274AA /* PlaceHolderView.swift */,
 				1A2E5B9A25D14EC70099051B /* Assets.xcassets */,
 				1A2E5B9F25D14EC70099051B /* Persistence.swift */,
 				1A2E5BA425D14EC70099051B /* Info.plist */,
@@ -162,10 +284,93 @@
 		1A63A51C25DD6F3400F78B7E /* CreateSurvey */ = {
 			isa = PBXGroup;
 			children = (
+				1AA760E2262D7D0200EAE73F /* EditQuestionView.swift */,
 				1A63A52025DD71A900F78B7E /* CreateQuestionView.swift */,
 				1A63A52B25DD730600F78B7E /* CreateSurveyView.swift */,
 			);
 			path = CreateSurvey;
+			sourceTree = "<group>";
+		};
+		1A87DA35260E13C9003DF616 /* FillSurveyViews */ = {
+			isa = PBXGroup;
+			children = (
+				1AA85A26260B397F00CA318E /* QuestionViews */,
+				1AA66760260A267100188933 /* AnswerView.swift */,
+				1AA66756260A1E6100188933 /* QuestionView.swift */,
+				1A9193FF2615EB09009882A8 /* BrowseNewSurveysView.swift */,
+				1AEE0B40260906FB00D94FF8 /* SurveyMainView.swift */,
+				1AA6675B260A22FC00188933 /* ProgressBarView.swift */,
+				1A36F3BF25D961E0009C0DA5 /* MainPageSurveyPreview.swift */,
+				1AAE00F925DE94E000D09A21 /* QuestionPreviewView.swift */,
+			);
+			path = FillSurveyViews;
+			sourceTree = "<group>";
+		};
+		1A91DC472631BCFF00875B5F /* TagViews */ = {
+			isa = PBXGroup;
+			children = (
+				1ADA1E1D260B41D60085DB39 /* AddTagView.swift */,
+				1ABC871A261F3C8B00ACADD8 /* TagView.swift */,
+			);
+			path = TagViews;
+			sourceTree = "<group>";
+		};
+		1AA66776260A289500188933 /* HandlingData */ = {
+			isa = PBXGroup;
+			children = (
+				1AC8F2592614E86100754A78 /* Models */,
+				1ABB9BA5260116E500CB2E6D /* DataReceiveSend.swift */,
+				1A7EA787262EF3020071A86D /* ExportResults.swift */,
+				1A9193F22615DF56009882A8 /* UserData.swift */,
+				1AA6676A260A27B900188933 /* QuestionStructs.swift */,
+				1A9E706B260FA1D2006240F0 /* PieCharClass.swift */,
+			);
+			path = HandlingData;
+			sourceTree = "<group>";
+		};
+		1AA85A26260B397F00CA318E /* QuestionViews */ = {
+			isa = PBXGroup;
+			children = (
+				1AA85A21260B396D00CA318E /* ClosedSelectOneQuestionView.swift */,
+				1AA66786260A2E4D00188933 /* OpenedQuestionView.swift */,
+				1A87DA26260DD2C7003DF616 /* ClosedSelectMultipleView.swift */,
+				1A87DA2B260DEB4B003DF616 /* CombinedSelectOneView.swift */,
+				1A87DA30260E06B3003DF616 /* CombinedSelectMultipleView.swift */,
+			);
+			path = QuestionViews;
+			sourceTree = "<group>";
+		};
+		1AC8F2552614E83500754A78 /* ShopViews */ = {
+			isa = PBXGroup;
+			children = (
+				1AC858DB25DFCADD0040D2C3 /* ShopView.swift */,
+				1A87DA39260E39CA003DF616 /* AddCouponSheetView.swift */,
+				1AC858E025DFCBC20040D2C3 /* CouponBuyView.swift */,
+			);
+			path = ShopViews;
+			sourceTree = "<group>";
+		};
+		1AC8F2592614E86100754A78 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				1AD50A782612116E00D4CB2E /* URLSessionExtension.swift */,
+				1A7EA782262EDDBD0071A86D /* helpers.swift */,
+				1AD50A7D261211AA00D4CB2E /* UserModel.swift */,
+				1AA38A3A2620AD2100B274AA /* BoughtCouponCodeModel.swift */,
+				1ABC8715261F281B00ACADD8 /* TagModel.swift */,
+				1A91941126160690009882A8 /* SignUserModel.swift */,
+				1A91AACC261359C000022994 /* MyQuestionairesModel.swift */,
+				1AD50A822612124900D4CB2E /* QuestionaireModel.swift */,
+				1AC1DCE7261C86DD00218FB0 /* QnairesModel.swift */,
+				1A91AAD12613697900022994 /* ResultModel.swift */,
+				1AD50A9126121E8000D4CB2E /* AnswerModel.swift */,
+				1AA38A302620A41400B274AA /* BoughtCouponsModel.swift */,
+				1A9193E22615BE79009882A8 /* BuyCouponModel.swift */,
+				1AC8F24D2614D39100754A78 /* AddedCouponModel.swift */,
+				1AD50A8C261219B000D4CB2E /* QuestionModel.swift */,
+				1AD50A872612129200D4CB2E /* GeneralModelClass.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -184,6 +389,9 @@
 			dependencies = (
 			);
 			name = "SurveyAPP-FISEC";
+			packageProductDependencies = (
+				1A9193E82615D7DF009882A8 /* Defaults */,
+			);
 			productName = "SurveyAPP-FISEC";
 			productReference = 1A2E5B9325D14EC60099051B /* SurveyAPP-FISEC.app */;
 			productType = "com.apple.product-type.application";
@@ -255,6 +463,9 @@
 				Base,
 			);
 			mainGroup = 1A2E5B8A25D14EC60099051B;
+			packageReferences = (
+				1A9193E72615D7DF009882A8 /* XCRemoteSwiftPackageReference "Defaults" */,
+			);
 			productRefGroup = 1A2E5B9425D14EC60099051B /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -297,18 +508,67 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1AA85A22260B396D00CA318E /* ClosedSelectOneQuestionView.swift in Sources */,
 				1A8FEB2E25DA9B0E00F128CE /* UserProfileView.swift in Sources */,
+				1A9E7067260F7031006240F0 /* QuestionResultDetailView.swift in Sources */,
+				1A7EA783262EDDBD0071A86D /* helpers.swift in Sources */,
+				1A9193F32615DF56009882A8 /* UserData.swift in Sources */,
+				1A87DA3A260E39CA003DF616 /* AddCouponSheetView.swift in Sources */,
+				1A7EA788262EF3020071A86D /* ExportResults.swift in Sources */,
 				1A2E5BA325D14EC70099051B /* SurveyAPP_FISEC.xcdatamodeld in Sources */,
+				1A9193E32615BE79009882A8 /* BuyCouponModel.swift in Sources */,
+				1A89A6FB26348F12003F7102 /* SwiftUIView.swift in Sources */,
 				1A2E5BA025D14EC70099051B /* Persistence.swift in Sources */,
+				1AD50A792612116E00D4CB2E /* URLSessionExtension.swift in Sources */,
+				1A87DA2C260DEB4B003DF616 /* CombinedSelectOneView.swift in Sources */,
+				1AD50A7E261211AA00D4CB2E /* UserModel.swift in Sources */,
+				1AA38A2C2620A37A00B274AA /* BoughtCouponsView.swift in Sources */,
 				1A2E5B9925D14EC60099051B /* ContentView.swift in Sources */,
+				1AA6676B260A27B900188933 /* QuestionStructs.swift in Sources */,
+				1A7EA7A4262F1E830071A86D /* AddedCCardView.swift in Sources */,
+				1AA38A3B2620AD2100B274AA /* BoughtCouponCodeModel.swift in Sources */,
+				1A7EA79F262F1DBD0071A86D /* AddedCouponsView.swift in Sources */,
 				1A63A52C25DD730700F78B7E /* CreateSurveyView.swift in Sources */,
+				1AA6675C260A22FC00188933 /* ProgressBarView.swift in Sources */,
+				1A91941226160690009882A8 /* SignUserModel.swift in Sources */,
+				1AD50A882612129200D4CB2E /* GeneralModelClass.swift in Sources */,
+				1ABC871B261F3C8B00ACADD8 /* TagView.swift in Sources */,
+				1AEE0B41260906FB00D94FF8 /* SurveyMainView.swift in Sources */,
+				1AA760E3262D7D0200EAE73F /* EditQuestionView.swift in Sources */,
+				1AA66761260A267100188933 /* AnswerView.swift in Sources */,
+				1AA66787260A2E4D00188933 /* OpenedQuestionView.swift in Sources */,
+				1A91AAD22613697900022994 /* ResultModel.swift in Sources */,
+				1A9E7071260FA281006240F0 /* PieChartSlideView.swift in Sources */,
+				1AA38A362620A92400B274AA /* BoughtCCardView.swift in Sources */,
+				1ABC8716261F281B00ACADD8 /* TagModel.swift in Sources */,
+				1A9E7062260F4936006240F0 /* EditProfileSheetView.swift in Sources */,
 				1A63A52125DD71A900F78B7E /* CreateQuestionView.swift in Sources */,
-				1AF422E725D42A7B00EDE106 /* MainView.swift in Sources */,
+				1AD50A8D261219B000D4CB2E /* QuestionModel.swift in Sources */,
+				1A91941D26162070009882A8 /* MainView.swift in Sources */,
+				1AD50A832612124900D4CB2E /* QuestionaireModel.swift in Sources */,
+				1AA38A312620A41400B274AA /* BoughtCouponsModel.swift in Sources */,
 				1AAE00FA25DE94E000D09A21 /* QuestionPreviewView.swift in Sources */,
+				1A9194002615EB09009882A8 /* BrowseNewSurveysView.swift in Sources */,
 				1A36F3C025D961E0009C0DA5 /* MainPageSurveyPreview.swift in Sources */,
+				1A0054A92610E6C800D5B39B /* UserProfileLoadView.swift in Sources */,
+				1AA38A1C2620447900B274AA /* PlaceHolderView.swift in Sources */,
+				1AD50A9226121E8000D4CB2E /* AnswerModel.swift in Sources */,
+				1A9193EE2615D809009882A8 /* LogInView.swift in Sources */,
+				1A9E705A260F459D006240F0 /* QuestionaireResultsView.swift in Sources */,
+				1AC1DCE8261C86DD00218FB0 /* QnairesModel.swift in Sources */,
+				1AA66757260A1E6100188933 /* QuestionView.swift in Sources */,
+				1ADA1E1E260B41D60085DB39 /* AddTagView.swift in Sources */,
 				1AC858E125DFCBC20040D2C3 /* CouponBuyView.swift in Sources */,
+				1A91AACD261359C000022994 /* MyQuestionairesModel.swift in Sources */,
+				1A87DA27260DD2C7003DF616 /* ClosedSelectMultipleView.swift in Sources */,
+				1AC8F24E2614D39100754A78 /* AddedCouponModel.swift in Sources */,
+				1A919405261600A1009882A8 /* SignUpView.swift in Sources */,
+				1A87DA31260E06B3003DF616 /* CombinedSelectMultipleView.swift in Sources */,
 				1AC858DC25DFCADD0040D2C3 /* ShopView.swift in Sources */,
+				1ABB9BA6260116E500CB2E6D /* DataReceiveSend.swift in Sources */,
+				1A9E7055260F4453006240F0 /* MySurveysView.swift in Sources */,
 				1A2E5B9725D14EC60099051B /* SurveyAPP_FISECApp.swift in Sources */,
+				1A9E706C260FA1D2006240F0 /* PieCharClass.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -465,6 +725,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "SurveyAPP-FISEC/SurveyAPP-FISEC.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"SurveyAPP-FISEC/Preview Content\"";
 				DEVELOPMENT_TEAM = T7X92Z337Y;
@@ -487,6 +748,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "SurveyAPP-FISEC/SurveyAPP-FISEC.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"SurveyAPP-FISEC/Preview Content\"";
 				DEVELOPMENT_TEAM = T7X92Z337Y;
@@ -628,6 +890,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		1A9193E72615D7DF009882A8 /* XCRemoteSwiftPackageReference "Defaults" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/sindresorhus/Defaults";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.2.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		1A9193E82615D7DF009882A8 /* Defaults */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1A9193E72615D7DF009882A8 /* XCRemoteSwiftPackageReference "Defaults" */;
+			productName = Defaults;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		1A2E5BA125D14EC70099051B /* SurveyAPP_FISEC.xcdatamodeld */ = {
