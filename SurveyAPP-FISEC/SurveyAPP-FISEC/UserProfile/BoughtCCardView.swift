@@ -81,11 +81,11 @@ struct BoughtCCardView: View {
                     }
                     HStack{
                         Text(code)
-                        // TODO copy button
                         Button(action: {
                             UIPasteboard.general.string = self.code
                         }, label: {
                             Image(systemName: "doc.on.doc")
+                                .foregroundColor(.blue)
                         })
                     }
                 }.padding()

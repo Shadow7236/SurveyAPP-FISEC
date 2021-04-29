@@ -21,9 +21,7 @@ struct ContentView: View {
     
     var body: some View {
         if tok != nil {
-            MainView(redraw: $redraw).onAppear(perform: {
-                print(tok ?? "No token") // TODO DELETE
-            })
+            MainView(redraw: $redraw)
         } else {
             LogInView()
         }

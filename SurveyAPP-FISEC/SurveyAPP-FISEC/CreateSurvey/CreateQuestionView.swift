@@ -58,15 +58,16 @@ struct CreateQuestionView: View {
             })
         }
         .navigationTitle("Create question")
-        .navigationBarItems(trailing:
-                                Button(action: {
-                                    if saveQuestion() {
-                                        answers.textArray = []
-                                        self.mode.wrappedValue.dismiss()
-                                    }
-                                }){
-                                    Text("Save")
-                                })
+        .navigationBarItems(
+            trailing:
+                Button(action: {
+                    if saveQuestion() {
+                        answers.textArray = [""]
+                        self.mode.wrappedValue.dismiss()
+                    }
+                }){
+                    Text("Save")
+                })
     }
     
     func saveQuestion() -> Bool{

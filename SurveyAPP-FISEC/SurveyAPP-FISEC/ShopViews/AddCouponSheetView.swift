@@ -25,6 +25,7 @@ struct AddCouponSheetView: View {
     @State var error = String()
     @State var tokVal = 0.0
     @State var aToken: String = ""
+    @State var chooseAlert = 1
     
     var body: some View {
         VStack{
@@ -41,9 +42,15 @@ struct AddCouponSheetView: View {
                 }) {
                     Text("Save")
                 }.alert(isPresented: $showAlert, content: {
-                    Alert(title: Text("Error:"), message: Text(alertMsg), dismissButton: .default(Text("Ok")){
-                        couponModel.error = nil
-                    })
+                    if chooseAlert == 1 {
+                        return Alert(title: Text("Error:"), message: Text(alertMsg), dismissButton: .default(Text("Ok")){
+                            couponModel.error = nil
+                        })
+                    } else {
+                        return Alert(title: Text("Success:"), message: Text("Coupon successfully added."), dismissButton: .default(Text("Ok")){
+                            couponModel.error = nil
+                        })
+                    }
                 })
             }.padding()
             Form {
@@ -78,15 +85,6 @@ struct AddCouponSheetView: View {
                             .font(.caption)
                     }
                 }
-                //TODO authorization code
-                // TODO FAQ?
-                //                Section {
-                //                    Text("FAQ:")
-                //                        .font(.title3)
-                //                    Text("Why is URL needed:")
-                //                        .font(.subheadline)
-                //                    Text("")
-                //                }
             }
             
             Spacer()
@@ -115,6 +113,9 @@ struct AddCouponSheetView: View {
                     if let e = couponModel.error {
                         showAlert = true
                         alertMsg = e.description
+                    } else {
+                        showAlert = true
+                        chooseAlert = 0
                     }
                 }
             } else {

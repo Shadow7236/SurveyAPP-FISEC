@@ -102,9 +102,9 @@ struct LogInView: View {
                 showAlert = true
             } else {
                 if let a = userModel.result{
-                    userID = a.user.id.uuidString
+                    Defaults[.userID] = a.user.id.uuidString
                     Defaults[.tokens] = a.user.tokens
-                    token = a.token
+                    Defaults[.token] = a.token
                     errMsg = "Unexpected error."
                 } else {
                     errMsg = "Unexpected error."

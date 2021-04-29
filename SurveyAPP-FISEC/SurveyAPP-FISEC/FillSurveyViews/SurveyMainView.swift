@@ -9,13 +9,12 @@ import SwiftUI
 
 
 struct SurveyMainView: View {
+    
+    
     var survey: PublicQuestionaire
     @State private var questions: [Question]?
     @State private var cancellable: AnyCancellable?
     @Binding var rootIsActive: Bool
-
-    @State var index: Int = 0
-    
     
     var body: some View {
         VStack {
@@ -88,7 +87,7 @@ struct SurveyMainView: View {
                     .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, alignment: .topLeading)
             }
             Spacer()
-            NavigationLink(destination: QuestionView(questions: questions ?? [], index: $index, shouldPopToRootView: self.$rootIsActive, meActive: .constant(true), questionaireID: survey.id)){ 
+            NavigationLink(destination: QuestionView(questions: questions ?? [], index: 0, shouldPopToRootView: self.$rootIsActive, meActive: .constant(true), questionaireID: survey.id)){
                     Text("Start survey")
                         .font(.title)
                         .font(.headline)

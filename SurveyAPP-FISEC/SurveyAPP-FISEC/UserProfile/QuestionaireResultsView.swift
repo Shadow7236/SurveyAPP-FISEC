@@ -25,7 +25,7 @@ struct QuestionaireResultsView: View {
     
     @State var showSheet = false
     @State var text = "results"
-    
+    @State var closed: Bool
     
     var body: some View { 
         VStack{
@@ -50,12 +50,15 @@ struct QuestionaireResultsView: View {
                         }
                     }
                     Spacer()
-                    Button(action: {
-                        chooseAlert = 0
-                        showingAlert = true
-                    }){
-                        Text("Close")
-                            .foregroundColor(.red)
+                    if !closed {
+                        Button(action: {
+                            chooseAlert = 0
+                            showingAlert = true
+                        }){
+                            Text("Close")
+                                .foregroundColor(.red)
+                                .fontWeight(.bold)
+                        }
                     }
                 }.navigationBarItems(
                     trailing: Button(action: {
@@ -105,6 +108,7 @@ struct QuestionaireResultsView: View {
             case 0:
                 return Alert(title: Text("Close?"), message: Text("Do you really want to close this survey?"), primaryButton: .destructive(Text("Yes")) {
                     closeQuestionaire()
+                    
                 }, secondaryButton: .default(Text("No")))
             default:
                 return Alert(title: Text("Error"), message: Text(errMsg), dismissButton: .default(Text("Ok")){
@@ -116,7 +120,7 @@ struct QuestionaireResultsView: View {
     }
     
     
-    func closeQuestionaire() {
+    func closeQuestionaire() { // TODO closed
         let group = DispatchGroup()
         group.enter()
         myQModel.delete(g: group, delID: surveyID)
@@ -143,6 +147,7 @@ struct QuestionaireResultsView: View {
                     errMsg = err.description
                     showingAlert = true
                 }
+                closed = true
                 results = answerModel.results?.results ?? []
                 part = answerModel.results?.nRespondents ?? 0
             }
@@ -152,6 +157,6 @@ struct QuestionaireResultsView: View {
 
 struct QuestionaireResultsView_Previews: PreviewProvider {
     static var previews: some View {
-        QuestionaireResultsView(surveyID: UUID())
+        QuestionaireResultsView(surveyID: UUID(), closed: false)
     }
 }

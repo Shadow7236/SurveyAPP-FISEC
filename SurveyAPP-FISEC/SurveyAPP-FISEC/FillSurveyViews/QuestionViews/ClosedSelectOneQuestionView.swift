@@ -8,73 +8,67 @@
 import SwiftUI
 
 struct ClosedSelectOneQuestionView: View {
-    @EnvironmentObject var answers: AnswersClass
-
+    @ObservedObject
+    var tmpAnswer: TemporaryAnswerClass
     
     var encodedOption: String
     var index: Int
-    @Binding var selectedObject: Int
-    @Binding var options: [String]
-
-    
+    @State var noAnswerYet: FinalAnswer
     
     var body: some View {
-        List {
-            ForEach(options.indices, id: \.self) { i in
-                Button(action: {
-                    if i == selectedObject {
-                        selectedObject = -1
-                    } else {
-                        selectedObject = i
-                    }
-                }) {
-                    HStack {
-                        if i == selectedObject {
-                        Image(systemName: "checkmark.circle.fill")
-                                    .foregroundColor(.blue)
+        if let a = tmpAnswer.tmpAnswer {
+            List {
+                ForEach(a.options.indices, id: \.self) { i in
+                    Button(action: {
+                        if i == a.selected[0] {
+                            tmpAnswer.tmpAnswer?.selected = [-1]
                         } else {
-                            Image(systemName: "circle")
-                                    .foregroundColor(.blue)
+                            tmpAnswer.tmpAnswer?.selected = [i]
                         }
-                        Text(options[i])
+                    }) {
+                        HStack {
+                            if i == a.selected[0] {
+                                Image(systemName: "checkmark.circle.fill")
+                                    .foregroundColor(.blue)
+                            } else {
+                                Image(systemName: "circle")
+                                    .foregroundColor(.blue)
+                            }
+                            Text(a.options[i])
+                        }
                     }
                 }
             }
-        }.onAppear(perform: {
-            createOption()
-        })
-        
+        } else {
+            VStack {
+                ProgressView()
+                PlaceHolderView(txt: "Loading question")
+            }.onAppear(perform: {
+                createOption()
+            })
+        }
     }
     
     
     func createOption() {
         do {
             let a = try JSONDecoder().decode(DatabaseClosedSelectOneQuestion.self, from: encodedOption.data(using: .utf8)!)
-            if index >= answers.answers.count {
-                selectedObject = -1
-                options = a.options
+            if index < tmpAnswer.answers.count {
+                tmpAnswer.tmpAnswer = tmpAnswer.answers[index]
             } else {
-                if answers.answers[index].selected.count < 1 {
-                    options = a.options
-                    selectedObject = -1
-                } else {
-                    if answers.answers[index].selected[0] < a.options.count && answers.answers[index].selected[0] >= 0 {
-                        selectedObject = answers.answers[index].selected[0]
-                    } else {
-                        selectedObject = -1
-                    }
-                    options = a.options
-                }
+                tmpAnswer.tmpAnswer = noAnswerYet
+                tmpAnswer.tmpAnswer?.selected = [-1]
+                tmpAnswer.tmpAnswer?.options = a.options
             }
         } catch {
-            selectedObject = -1
-            options = [""]
+            tmpAnswer.tmpAnswer = noAnswerYet
+            tmpAnswer.tmpAnswer?.selected = [-1]
         }
     }
 }
 
 struct ClosedSelectOneQuestionView_Previews: PreviewProvider {
     static var previews: some View {
-        ClosedSelectOneQuestionView(encodedOption: "{ \n options: [\"asdf\",\n \"haha\"], \n selected: 0 \n }", index: 0, selectedObject: .constant(-1), options: .constant(["aaa", "bb"]))
+        ClosedSelectOneQuestionView(tmpAnswer: TemporaryAnswerClass() ,encodedOption: "{ \n options: [\"asdf\",\n \"haha\"], \n selected: 0 \n }", index: 0, noAnswerYet: FinalAnswer(userID: "", aType: .ClosedSelectOne, answer: "", selected: [-1], question: "", questionaire: UUID(), index: 2, options: []))
     }
 }

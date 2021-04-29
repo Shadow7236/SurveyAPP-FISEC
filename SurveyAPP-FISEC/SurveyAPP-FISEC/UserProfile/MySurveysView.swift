@@ -53,7 +53,7 @@ struct MySurveysView: View {
                         Text("There are no active surveys")
                     } else {
                         ForEach(activated.indices, id: \.self) { i in
-                            NavigationLink(destination: QuestionaireResultsView(surveyID: activated[i].id)) {
+                            NavigationLink(destination: QuestionaireResultsView(surveyID: activated[i].id, closed: false)) {
                                 MainPageSurveyPreview(questionaire: PublicQuestionaire(id: activated[i].id, tags: activated[i].tags, title: activated[i].title, description: activated[i].description, closeAfterDate: activated[i].closeAfterDate, nQuestions: activated[i].nQuestions, tokens: activated[i].tokens, image: activated[i].img))
                             }
                         }
@@ -64,7 +64,7 @@ struct MySurveysView: View {
                         Text("There are no closed surveys")
                     } else {
                         ForEach(deactivated.indices, id: \.self) { i in
-                            NavigationLink(destination: QuestionaireResultsView(surveyID: deactivated[i].id)) {
+                            NavigationLink(destination: QuestionaireResultsView(surveyID: deactivated[i].id, closed: true)) {
                                 MainPageSurveyPreview(questionaire: PublicQuestionaire(id: deactivated[i].id, tags: deactivated[i].tags, title: deactivated[i].title, description: deactivated[i].description, closeAfterDate: deactivated[i].closeAfterDate, nQuestions: deactivated[i].nQuestions, tokens: deactivated[i].tokens, image: deactivated[i].img))
                             }
                         }

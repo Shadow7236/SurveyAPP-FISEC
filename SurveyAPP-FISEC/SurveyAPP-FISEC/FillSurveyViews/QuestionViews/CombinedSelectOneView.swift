@@ -13,113 +13,101 @@ class IsSpecialSelectedModel: ObservableObject {
 }
 
 struct CombinedSelectOneView: View {
-    @EnvironmentObject var answers: AnswersClass
+    @ObservedObject
+    var tmpAnswer: TemporaryAnswerClass
     
     var encodedOption: String
     var index: Int
+    @State var noAnswerYet: FinalAnswer
     
-    @Binding
-    var isSpecialSelected: Bool
-    
-    @Binding var selectedObject: Int
-    @Binding var options: [String]
-    @Binding var newA: String
-    @Binding var defaultVal: String
-    @Binding var specialOptionName: String
-    
-    @State var tmp: String = ""
-    
-    @State var showOther: Bool = false
+    @State var placeholder: String = ""
+    @State var defined: String = ""
+    @State var optionName = ""
+    @State var showOther = false
     
     var body: some View {
-        List {
-            ForEach(options.indices, id: \.self) { i in
-                Button(action: {
-                    if i == selectedObject {
-                        selectedObject = -1
+        if let a = tmpAnswer.tmpAnswer {
+            List {
+                ForEach(a.options.indices, id: \.self) { i in
+                    if i != a.options.count-1 {
+                        Button(action: {
+                            if a.selected.contains(i) {
+                                tmpAnswer.tmpAnswer?.selected = []
+                            } else {
+                                tmpAnswer.tmpAnswer?.selected = [i]
+                            }
+                        }) {
+                            HStack {
+                                if a.selected.contains(i) {
+                                    Image(systemName: "checkmark.circle.fill")
+                                        .foregroundColor(.blue)
+                                } else {
+                                    Image(systemName: "circle")
+                                        .foregroundColor(.blue)
+                                }
+                                Text(a.options[i])
+                            }
+                        }
                     } else {
-                        selectedObject = i
-                    }
-                }) {
-                    HStack {
-                        if i == selectedObject {
-                            Image(systemName: "checkmark.circle.fill")
-                                .foregroundColor(.blue)
-                        } else {
-                            Image(systemName: "circle")
-                                .foregroundColor(.blue)
+                        Button(action: {
+                            if a.selected.contains(i) {
+                                    tmpAnswer.tmpAnswer?.selected = []
+                            } else {
+                                tmpAnswer.tmpAnswer?.selected = [i]
+                            }
+                        }){
+                            VStack {
+                                HStack {
+                                    if a.selected.contains(i) {
+                                        Image(systemName: "checkmark.circle.fill")
+                                            .foregroundColor(.blue)
+                                    } else {
+                                        Image(systemName: "circle")
+                                            .foregroundColor(.blue)
+                                    }
+                                    Text(optionName)
+                                    Spacer()
+                                }
+                                if a.selected.contains(i) {
+                                    TextField(placeholder, text: $defined).onChange(of: defined, perform: { value in
+                                        tmpAnswer.tmpAnswer?.answer = value
+                                    })
+                                }
+                            }
                         }
-                        Text(options[i])
                     }
                 }
             }
-            Button(action: {
-                if selectedObject == options.count {
-                    isSpecialSelected = false
-                    selectedObject = -1
-                } else {
-                    isSpecialSelected = true
-                    selectedObject = options.count
-                }
-            }){
-                VStack {
-                    Text("a \(isSpecialSelected.description)")
-                    HStack {
-                        if selectedObject == options.count {
-                            Image(systemName: "checkmark.circle.fill")
-                                .foregroundColor(.blue)
-                        } else {
-                            Image(systemName: "circle")
-                                .foregroundColor(.blue)
-                        }
-                        Text(specialOptionName)
-                        Spacer()
-//                        if showOther {
-//                            Spacer()
-//                        }
-                    }
-                    TextField(defaultVal, text: $tmp).onChange(of: tmp, perform: { value in
-                        newA = tmp
-                    })
-                }
-            }
-
-        }.onAppear(perform: createOption)
+        } else {
+            VStack {
+                ProgressView()
+                PlaceHolderView(txt: "Loading question")
+            }.onAppear(perform: {
+                createOption()
+            })
+        }
     }
     
     
     func createOption() {
         do {
-            if let val = encodedOption.data(using: .utf8) {
-                let a = try JSONDecoder().decode(DatabaseCombinedSelectOneQuestion.self, from: val)
-                if index >= answers.answers.count {
-                    selectedObject = -1
-                    options = a.options
-                } else {
-                    if answers.answers[index].selected.count > 0{
-                        if answers.answers[index].selected[0] <= a.options.count && answers.answers[index].selected[0] >= 0 {
-                            selectedObject = answers.answers[index].selected[0]
-                            if answers.answers[index].selected[0] == options.count {
-                                newA = answers.answers[index].answer
-                            }
-                        } else {
-                            selectedObject = -1
-                        }
-                    } else {
-                        selectedObject = -1
-                    }
-                    options = a.options
-                }
-                defaultVal = a.def
-                specialOptionName = a.otherOptionName
+            let a = try JSONDecoder().decode(DatabaseCombinedSelectOneQuestion.self, from: encodedOption.data(using: .utf8)!)
+            if index < tmpAnswer.answers.count {
+                tmpAnswer.tmpAnswer = tmpAnswer.answers[index]
+                defined = tmpAnswer.answers[index].answer
             } else {
-                throw DataError.jsonError("Combined select one options can't be decoded.")
+                tmpAnswer.tmpAnswer = noAnswerYet
+                tmpAnswer.tmpAnswer?.selected = []
+                tmpAnswer.tmpAnswer?.options = a.options
+                defined = tmpAnswer.tmpAnswer?.answer ?? a.def
+                tmpAnswer.tmpAnswer?.options.append(a.otherOptionName)
             }
+            optionName = a.otherOptionName
+            placeholder = a.def
         } catch {
-            selectedObject = -1
-            options = [""]
-            defaultVal = ""
-            specialOptionName = ""
+            tmpAnswer.tmpAnswer = noAnswerYet
+            tmpAnswer.tmpAnswer?.selected = [   ]
+            placeholder = ""
         }
     }
 }
@@ -127,9 +115,8 @@ struct CombinedSelectOneView: View {
 
 
 
-
 struct CombinedSelectOneView_Previews: PreviewProvider {
     static var previews: some View {
-        CombinedSelectOneView(encodedOption: "something", index: 0, isSpecialSelected: .constant(false), selectedObject: .constant(-1), options: .constant(["aaa","bbb"]), newA: .constant("new"), defaultVal: .constant("here put answer"), specialOptionName: .constant("Name"))
+        CombinedSelectOneView(tmpAnswer: TemporaryAnswerClass(  ), encodedOption: "", index: 0, noAnswerYet: FinalAnswer(userID: "", aType: .CombinedOne, answer: "", selected: [-1], question: "", questionaire: UUID(), index: 0, options: []))
     }
 }

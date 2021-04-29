@@ -23,7 +23,7 @@ class SignUserModel: GeneralModel, ObservableObject {
             .sink { [weak self] completion in
                 self?.handleEnd(completion: completion, g: g)
             } receiveValue: { [weak self] u in
-                self?.publicUser = u.user
+                self?.result = u
             }
     }
     
