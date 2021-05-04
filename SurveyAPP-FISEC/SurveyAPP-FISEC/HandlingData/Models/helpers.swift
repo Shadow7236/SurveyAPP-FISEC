@@ -4,6 +4,8 @@
 //
 //  Taken from https://stackoverflow.com/a/26503188
 //
+//  [Edited by Radovan Klembara (2021)]
+//
 
 import Foundation
 

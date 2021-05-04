@@ -4,11 +4,14 @@
 //
 //  Created by Kent Winder
 //  Taken from https://blog.nextzy.me/create-a-simple-pie-chart-with-swiftui-e39d75b4a740
-
+//
+//  [Edited by Radovan Klembara (2021)]
+//
 import Foundation
 import SwiftUI
 
 extension Color {
+    /// Generates random color
     static var random: Color {
         return Color(
             red: .random(in: 0...1),
@@ -18,6 +21,7 @@ extension Color {
     }
 }
 
+/// One data item
 class DataItem {
     var name: String! = ""
     var value: Double = 0.0
@@ -34,6 +38,7 @@ class DataItem {
     }
 }
 
+/// Data for creating one slide
 class SlideData: Identifiable, ObservableObject {
     let id: UUID = UUID()
     var data: DataItem!
@@ -43,6 +48,7 @@ class SlideData: Identifiable, ObservableObject {
     var percentage: String! = ""
 }
 
+/// Represents whole pie chart
 class PieChartData: ObservableObject {
     @Published private(set) var data: [SlideData] = []
     

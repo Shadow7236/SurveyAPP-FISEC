@@ -32,6 +32,8 @@ struct QuestionView: View {
     var questionnaireID: UUID
     @State var showAlert: Bool = false
     @State var errTitle = "Error:"
+    
+    @Binding var id: UUID
     var body: some View {
         VStack {
             if index < questions.count {
@@ -174,6 +176,7 @@ struct QuestionView: View {
                         newStringAnswer = ""
                         action = 0
                         meActive = false
+                        id = questionnaireID
                         shouldPopToRootView = false
                         self.mode.wrappedValue.dismiss()
                     }
@@ -193,6 +196,6 @@ struct QuestionView: View {
 struct QuestionView_Previews: PreviewProvider {
     static var previews: some View {
         let a = Question(id: UUID(), belongsToQuestionnaire: BelongsTo(id: UUID()), qText: "Question?", qType: .Opened, qOptions: "sadf", index: -1)
-        QuestionView(questions: [a], index: 0, shouldPopToRootView: .constant(false), meActive: .constant(true), questionnaireID: UUID())
+        QuestionView(questions: [a], index: 0, shouldPopToRootView: .constant(false), meActive: .constant(true), questionnaireID: UUID(), id: .constant(UUID()))
     }
 }

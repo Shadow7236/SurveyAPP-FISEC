@@ -26,6 +26,12 @@ struct BrowseNewSurveysView: View {
     
     @StateObject
     var questionnairesModel = QnairesModel()
+    @State var redraw = false
+    @State var id = UUID()
+    
+    var allQuestionnaires: [(UUID, Int)] {
+        zip(self.questionnaires, 0...).map { ($0.id, $1) }
+    }
     
     var body: some View {
         NavigationView{
@@ -34,12 +40,17 @@ struct BrowseNewSurveysView: View {
                     PlaceHolderView(txt: "There are no surveys left")
                 } else {
                     List {
-                        ForEach(questionnaires.indices, id: \.self) { i in
+                        ForEach(allQuestionnaires, id: \.0) { (_, i) in
                             if haveSame(qTags: questionnaires[i].tags) {
                                 NavigationLink(
-                                    destination: SurveyMainView(survey: questionnaires[i], rootIsActive: self.$isActive[i]), isActive: self.$isActive[i]){
+                                    destination: SurveyMainView(survey: questionnaires[i], rootIsActive: self.$isActive[i], id: $id), isActive: self.$isActive[i]) {
                                     MainPageSurveyPreview(questionnaire: questionnaires[i])
                                 }.isDetailLink(false)
+                                .onChange(of: id, perform: { value in
+                                    if questionnaires[i].id == value {
+                                        questionnaires.remove(at: i)
+                                    }
+                                })
                             }
                         }
                     }.listStyle(PlainListStyle())

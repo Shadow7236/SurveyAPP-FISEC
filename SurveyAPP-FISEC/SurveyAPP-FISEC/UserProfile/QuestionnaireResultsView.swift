@@ -63,6 +63,7 @@ struct QuestionnaireResultsView: View {
                     trailing: Button(action: {
                         /// Creted by Dawy
                         /// Taken from https://stackoverflow.com/a/54031361
+                        /// [Edited by Radovan Klembara (2021)]
                         let export = prepareData(results: results, nRes: part)
                         
                         let fm = FileManager.default
@@ -79,6 +80,7 @@ struct QuestionnaireResultsView: View {
                         }
                         /// Creted by Amir
                         /// Taken from https://stackoverflow.com/a/64962982
+                        ///  [Edited by Radovan Klembara (2021)]
                         let shareActivity = UIActivityViewController(activityItems: [fileURL], applicationActivities: nil)
                         shareActivity.completionWithItemsHandler = {
                             (type, completed, items, error) in

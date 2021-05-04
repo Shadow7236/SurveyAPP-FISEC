@@ -4,6 +4,9 @@
 //
 //  Created by Kent Winder
 //  Taken from https://blog.nextzy.me/create-a-simple-pie-chart-with-swiftui-e39d75b4a740
+//
+//  [Edited by Radovan Klembara (2021)]
+//
 import SwiftUI
 
 struct PieChartSlideView: View {

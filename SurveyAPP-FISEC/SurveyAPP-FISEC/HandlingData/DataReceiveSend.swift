@@ -81,7 +81,7 @@ struct CreateSurvey: Codable {
 }
 
 /// Public representation of survey
-struct PublicQuestionnaire: Codable{
+struct PublicQuestionnaire: Codable, Identifiable {
     let id: UUID
     var tags: [TagStruct]
     var title: String

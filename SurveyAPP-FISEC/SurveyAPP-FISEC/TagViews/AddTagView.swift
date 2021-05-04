@@ -37,6 +37,7 @@ struct AddTagView: View {
             }.padding()
             /// Created by Simon Ng
             /// Taken from https://www.appcoda.com/swiftui-search-bar/
+            /// [Edited by Radovan Klembara (2021)]
             VStack {
                 TextField("Search tags:", text: $text)
                     .padding(7)

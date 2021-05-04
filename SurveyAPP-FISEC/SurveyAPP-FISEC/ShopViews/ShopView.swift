@@ -60,8 +60,7 @@ struct ShopView: View {
         
     }
     
-    //TODO alert err
-    /// Loads chop content
+    /// Loads shop content
     func loadData() {
         let group = DispatchGroup()
         group.enter()

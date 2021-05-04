@@ -81,7 +81,7 @@ struct MySurveysView: View {
     
     
     
-    /// <#Description#>
+    /// Loads users surveys
     func loadData() {
         if let iid = userID {
             if let id = UUID(uuidString: iid){

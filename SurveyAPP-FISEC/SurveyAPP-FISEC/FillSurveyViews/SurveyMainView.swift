@@ -13,7 +13,7 @@ struct SurveyMainView: View {
     var survey: PublicQuestionnaire
     @State private var questions: [Question]?
     @Binding var rootIsActive: Bool
-    
+    @Binding var id: UUID
     var body: some View {
         VStack {
             if survey.image == nil {
@@ -85,7 +85,7 @@ struct SurveyMainView: View {
                     .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, alignment: .topLeading)
             }
             Spacer()
-            NavigationLink(destination: QuestionView(questions: questions ?? [], index: 0, shouldPopToRootView: self.$rootIsActive, meActive: .constant(true), questionnaireID: survey.id)){
+            NavigationLink(destination: QuestionView(questions: questions ?? [], index: 0, shouldPopToRootView: self.$rootIsActive, meActive: .constant(true), questionnaireID: survey.id, id: $id)){
                     Text("Start survey")
                         .font(.title)
                         .font(.headline)
@@ -107,7 +107,7 @@ struct SurveyMainView_Previews: PreviewProvider {
     static var previews: some View {
         let a = PublicQuestionnaire(id: UUID(), tags: [], title: "Title", description: "Description", closeAfterDate: "22.12.1222", nQuestions: 3, tokens: 200,  image: nil)
         NavigationView {
-            SurveyMainView(survey: a, rootIsActive: .constant(false))
+            SurveyMainView(survey: a, rootIsActive: .constant(false), id: .constant(UUID()))
         }
     }
 }

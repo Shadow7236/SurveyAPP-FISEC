@@ -83,9 +83,8 @@ struct CouponBuyView: View {
     
     
     
-    /// <#Description#>
-    /// - Returns: <#description#>
-    func sendData() -> Void {
+    /// Sends request for buying coupon
+    func sendData() {
         if let id = usrID {
             if let userID = UUID(uuidString: id) {
                 buyCouponModel.coupon = BuyCoupon(userID: userID, couponID: coupon.id)
