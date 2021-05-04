@@ -2,37 +2,30 @@
 //  MainView.swift
 //  SurveyAPP-FISEC
 //
-//  Created by Radovan Klembara on 10/02/2021.
+//  Created by Radovan Klembara on 01/04/2021.
 //
 
+import Combine
 import SwiftUI
 
-struct MainView: View {
-    @Environment(\.managedObjectContext) private var viewContext
 
-    @FetchRequest(
-        sortDescriptors: [NSSortDescriptor(keyPath: \Item.timestamp, ascending: true)],
-        animation: .default)
-    private var items: FetchedResults<Item>
-    
+/// Main view showed to logged user
+struct MainView: View {
+    @Binding var redraw: Bool
+
     var body: some View {
-        List {
-            ForEach(items) { item in
-                Text("Item at \(item.timestamp!, formatter: itemFormatter)")
-            }
+        TabView {
+            BrowseNewSurveysView().tabItem { Label("Home", systemImage: "house") } 
+            UserProfileLoadView(redraw: $redraw).tabItem { Label("Profile", systemImage: "person.fill")}
+            ShopView().tabItem { Label("Shop", systemImage: "bag.fill") }
+            CreateSurveyView().tabItem { Label("Create", systemImage: "plus")}
         }
     }
 }
 
-private let itemFormatter: DateFormatter = {
-    let formatter = DateFormatter()
-    formatter.dateStyle = .short
-    formatter.timeStyle = .medium
-    return formatter
-}()
 
 struct MainView_Previews: PreviewProvider {
     static var previews: some View {
-        MainView().previewDevice("iPhone 11")
+        MainView(redraw: .constant(false)).previewDevice("iPhone 11")
     }
 }

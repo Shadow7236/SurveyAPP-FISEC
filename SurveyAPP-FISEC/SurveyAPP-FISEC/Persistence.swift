@@ -3,7 +3,7 @@
 //  SurveyAPP-FISEC
 //
 //  Created by Radovan Klembara on 08/02/2021.
-//
+// TODO VYMAZAT
 
 import CoreData
 
