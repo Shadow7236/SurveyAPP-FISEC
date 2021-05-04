@@ -29,8 +29,8 @@ struct ShopView: View {
                     PlaceHolderView(txt: "There are no coupons")
                 } else {
                         List {
-                            ForEach(coupons.indices, id: \.self) { i in
-                                CouponBuyView(coupon: coupons[i])
+                            ForEach(coupons) { c in
+                                CouponBuyView(coupon: c)
                             }
                         }
                         
@@ -54,8 +54,7 @@ struct ShopView: View {
                 }
             )
             .navigationBarTitle(Text("Shop"), displayMode: .inline)
-        }
-        .onAppear(perform: loadData)
+        }.onAppear(perform: loadData)
         .navigationViewStyle(StackNavigationViewStyle())
         
     }

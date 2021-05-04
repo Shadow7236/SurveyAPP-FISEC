@@ -8,8 +8,8 @@
 import Foundation
 
 /// Server urls
-//let _serverURL = "https://fisec.herokuapp.com"
-let _serverURL = "http://127.0.0.1:8080"
+let _serverURL = "https://fisec.herokuapp.com"
+//let _serverURL = "http://127.0.0.1:8080"
 
 /// Known HTTP error codes
 enum HTTPError: String, LocalizedError {
@@ -93,7 +93,7 @@ struct PublicQuestionnaire: Codable, Identifiable {
 }
 
 /// Represents added coupon
-struct AddedCoupon: Codable {
+struct AddedCoupon: Codable, Identifiable {
     var id: UUID
     var addedBy: BelongsTo
     var fromServer: String

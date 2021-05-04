@@ -105,8 +105,18 @@ struct AddCouponSheetView: View {
     func saveAndSend() {
         if tokVal == 0 {
             showAlert = true
-            alertMsg = "Something went wrong"
+            alertMsg = "Coupon value has to be given."
         } else {
+            if name.isEmpty {
+                showAlert = true
+                alertMsg = "Coupon name has to be given."
+                return
+            }
+            if couponURL.isEmpty {
+                showAlert = true
+                alertMsg = "Coupon URL has to be given."
+                return
+            }
             if let userID = UUID(uuidString: usrID ?? "") {
                 let coupon = AddedCoupon(id: UUID(), addedBy: BelongsTo(id:  userID), fromServer: couponURL, value: tokVal, name: name, token: aToken ==  "" ? nil : aToken)
                 couponModel.newCoupon = coupon
