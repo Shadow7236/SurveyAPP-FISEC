@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+/// View for showing one coupon
 struct AddedCCardView: View {
     @StateObject
     var addedModel = AddedCouponModel()
@@ -65,7 +66,8 @@ struct AddedCCardView: View {
         .background(Color.gray.opacity(0.2))
     }
     
-    func sendData() -> Void {
+    /// Deletes added coupon
+    func sendData() {
         let group = DispatchGroup()
         group.enter()
         addedModel.delete(g: group, id: coupon.id)

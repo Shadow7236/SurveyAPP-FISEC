@@ -9,18 +9,20 @@ import Combine
 import SwiftUI
 
 
+/// Main view showed to logged user
 struct MainView: View {
     @Binding var redraw: Bool
-    
+
     var body: some View {
         TabView {
-            BrowseNewSurveysView().tabItem { Label("Home", systemImage: "house") } // TODO timestamp?
+            BrowseNewSurveysView().tabItem { Label("Home", systemImage: "house") } 
             UserProfileLoadView(redraw: $redraw).tabItem { Label("Profile", systemImage: "person.fill")}
             ShopView().tabItem { Label("Shop", systemImage: "bag.fill") }
             CreateSurveyView().tabItem { Label("Create", systemImage: "plus")}
         }
     }
 }
+
 
 struct MainView_Previews: PreviewProvider {
     static var previews: some View {

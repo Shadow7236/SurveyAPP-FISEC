@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+/// View showing question preview
 struct QuestionPreviewView: View {
     var question: Question?
     

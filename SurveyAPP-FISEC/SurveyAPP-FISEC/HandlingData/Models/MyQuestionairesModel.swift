@@ -10,15 +10,23 @@ import Combine
 import Foundation
 
 
+/// Represents users surveys in terms of communication with server
 class MyQuestionairesModel: GeneralModel, ObservableObject {
     @Published
-//    var surveys: MyQuestionaires?
     var surveys: [QuestionairePrivate]?
     
+    /// Loads users surveys
+    /// - Parameters:
+    ///   - id: survey identifier
+    ///   - g: dispatch group
     func loadQuestionaires(id: UUID, g: DispatchGroup) {
         _loadData(id: id, g: g)
     }
     
+    /// Loads users surveys
+    /// - Parameters:
+    ///   - id: user identifier
+    ///   - g: dispatch group
     func _loadData(id: UUID, g: DispatchGroup) {
         let stringID = id.uuidString
         let url = URL(string: _serverURL + "/questionnaires/mySurveys/" + stringID)!
@@ -30,6 +38,10 @@ class MyQuestionairesModel: GeneralModel, ObservableObject {
             }
     }
     
+    /// Closes survey
+    /// - Parameters:
+    ///   - g: dispatch group
+    ///   - delID: survey identifier
     func delete(g: DispatchGroup, delID: UUID) {
         let url = URL(string: _serverURL + "/questionnaires/" + delID.uuidString)!
         if let uuidString = Defaults[.userID] {

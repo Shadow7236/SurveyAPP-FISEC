@@ -10,13 +10,9 @@ import Combine
 import SwiftUI
 
 
-class AnswersClass: ObservableObject {
-    @Published var answers: [FinalAnswer] = []
-}
-
-
+/// View for browsing surveys
 struct BrowseNewSurveysView: View {
-    @State private var questionaires = [PublicQuestionaire]()
+    @State private var questionaires = [PublicQuestionnaire]()
     @State private var isActive = [Bool]()
     @State private var showAlert = false
     @State private var errMsg = "Unknown error. Please try again later."
@@ -30,9 +26,6 @@ struct BrowseNewSurveysView: View {
     
     @StateObject
     var questionairesModel = QnairesModel()
-    
-    @StateObject
-    var answers = AnswersClass()
     
     var body: some View {
         // TODO Reload
@@ -67,7 +60,6 @@ struct BrowseNewSurveysView: View {
                     }.foregroundColor(.blue)
                 })
         }.onAppear(perform: {
-                answers.answers = []
                 questionaires = []
                 loadData()
             }).sheet(isPresented: $showSheet, content: {
@@ -78,9 +70,11 @@ struct BrowseNewSurveysView: View {
                 questionairesModel.error = nil
             })
         })
-        .environmentObject(answers)
     }
     
+    /// Checs if any of survey tags is included in searched tags
+    /// - Parameter qTags: survey tags
+    /// - Returns: True if any of tags in survey is searched
     func haveSame(qTags: [TagStruct]) -> Bool {
         if newTags.isEmpty {
             return true
@@ -95,6 +89,7 @@ struct BrowseNewSurveysView: View {
         return false
     }
     
+    /// Loads surveys
     func loadData() {
         let group = DispatchGroup()
         group.enter()

@@ -9,6 +9,7 @@ import Combine
 import Foundation
 import Defaults
 
+/// Represents HTTP methods
 enum HTTPMethod: String {
     case get = "GET"
     case post = "POST"
@@ -16,6 +17,13 @@ enum HTTPMethod: String {
 }
 
 extension URLSession {
+    /// Sends HTTP request to server url with certain type of method, headers and HTTP body
+    /// - Parameters:
+    ///   - method: represents what type of method should be send
+    ///   - url: url address of destination
+    ///   - headers: HTTP headers
+    ///   - body: HTTP body
+    /// - Returns: body of HTTP answer or error
     static func requestPublisher<Upstream: Encodable>(
         method: HTTPMethod = .get,
         url: URL,
@@ -51,12 +59,20 @@ extension URLSession {
                         throw HTTPError.statusCode
                     }
                 }
-                return output.data
+                return output.data 
             }
             .receive(on: DispatchQueue.main)
             .eraseToAnyPublisher()
     }
     
+    /// Sends HTTP request to server url with certain type of method, headers and HTTP body
+    /// - Parameters:
+    ///   - method: represents what type of method should be send
+    ///   - url: url address of destination
+    ///   - headers: HTTP headers
+    ///   - body: HTTP body
+    ///   - resultType: type of what is expected in HTTP answer
+    /// - Returns: decoded body of HTTP answer
     static func requestPublisher<Upstream: Encodable, Downstream: Decodable>(
         method: HTTPMethod = .get,
         url: URL,
@@ -70,6 +86,13 @@ extension URLSession {
             .eraseToAnyPublisher()
     }
     
+    /// Sends HTTP request to server url with certain type of method, headers and HTTP body
+    /// - Parameters:
+    ///   - method: represents what type of method should be send
+    ///   - url: url address of destination
+    ///   - headers: HTTP headers
+    ///   - resultAs: type of what is expected in HTTP answer
+    /// - Returns: decoded body of HTTP answer
     static func requestPublisher<Downstream: Decodable>(
         method: HTTPMethod = .get,
         url: URL,
@@ -79,6 +102,12 @@ extension URLSession {
         requestPublisher(method: method, url: url, headers: headers, body: Int?.none, resultAs: resultAs)
     }
     
+    /// Sends HTTP request to server url with certain type of method, headers and HTTP body
+    /// - Parameters:
+    ///   - method: represents what type of method should be send
+    ///   - url: url address of destination
+    ///   - headers: HTTP headers
+    /// - Returns: body of HTTP request
     static func requestPublisher(
         method: HTTPMethod = .get,
         url: URL,

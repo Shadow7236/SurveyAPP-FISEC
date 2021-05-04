@@ -7,48 +7,7 @@
 
 import SwiftUI
 
-struct MultiLineTF: UIViewRepresentable {
-    @Binding var txt: String
-    var placeholder: String
-    
-    func makeCoordinator() -> MultiLineTF.Coordinator {
-        return MultiLineTF.Coordinator(parent1: self)
-    }
-    
-    func makeUIView(context: UIViewRepresentableContext<MultiLineTF>) -> UITextView {
-        let tview = UITextView()
-        tview.isEditable = true
-        tview.isUserInteractionEnabled = true
-        tview.isScrollEnabled = true
-        tview.text = placeholder
-        tview.textColor = .gray
-        tview.font = .systemFont(ofSize: 20)
-        tview.delegate = context.coordinator
-        return tview
-    }
-    
-    func updateUIView(_ uiView: UITextView, context: UIViewRepresentableContext<MultiLineTF>) {
-        
-    }
-    
-    class Coordinator: NSObject, UITextViewDelegate {
-        var parent: MultiLineTF
-        
-        init(parent1: MultiLineTF){
-            parent = parent1
-        }
-        
-        func textViewDidChange(_ textView: UITextView) {
-            self.parent.txt = textView.text
-        }
-        
-        func textViewDidBeginEditing(_ textView: UITextView)  {
-            textView.text = ""
-            textView.textColor = .label
-        }
-    }
-}
-
+/// View of opened question
 struct OpenedQuestionView: View {
     @ObservedObject
     var tmpAnswer: TemporaryAnswerClass
@@ -89,6 +48,8 @@ struct OpenedQuestionView: View {
     
     
     
+    /// Decodes question
+    /// - Parameter encoded: encoded question specialization
     func createOption(encoded: String) {
         do {
             let a = try JSONDecoder().decode(DatabaseOpenedQuestion.self, from: encoded.data(using: .utf8)!)

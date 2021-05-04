@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+/// View of combined select miltiple question
 struct CombinedSelectMultipleView: View {
     @ObservedObject
     var tmpAnswer: TemporaryAnswerClass
@@ -89,6 +90,7 @@ struct CombinedSelectMultipleView: View {
     }
     
     
+    /// Decodes question
     func createOption() {
         do {
             let a = try JSONDecoder().decode(DatabaseCombinedSelectMultipleQuestion.self, from: encodedOption.data(using: .utf8)!)

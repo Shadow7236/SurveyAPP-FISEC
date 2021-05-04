@@ -8,6 +8,7 @@
 import SwiftUI
 import Defaults
 
+/// Main view of application
 struct ContentView: View {
     @Default(.token) var tok
     @Default(.userID) var userID
@@ -20,6 +21,7 @@ struct ContentView: View {
     @State var redraw: Bool = false
     
     var body: some View {
+        /// Checks if user is logged in
         if tok != nil {
             MainView(redraw: $redraw)
         } else {

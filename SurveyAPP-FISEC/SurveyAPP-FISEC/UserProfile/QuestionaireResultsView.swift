@@ -2,12 +2,11 @@
 //  QuestionaireResultsView.swift
 //  SurveyAPP-FISEC
 //
-//  Created by Radovan Klembara on 27/03/2021.
-//
 
 import Combine
 import SwiftUI
 
+/// View for showing survey results
 struct QuestionaireResultsView: View {
     @State var surveyID: UUID
     @State private var results = [QuestionResult]()
@@ -62,7 +61,8 @@ struct QuestionaireResultsView: View {
                     }
                 }.navigationBarItems(
                     trailing: Button(action: {
-                        //https://stackoverflow.com/a/54031361
+                        /// Creted by Dawy
+                        /// Taken from https://stackoverflow.com/a/54031361
                         let export = prepareData(results: results)
                         
                         let fm = FileManager.default
@@ -77,7 +77,8 @@ struct QuestionaireResultsView: View {
                             showingAlert = true
                             return
                         }
-                        //https://stackoverflow.com/a/64962982
+                        /// Creted by Amir
+                        /// Taken from https://stackoverflow.com/a/64962982
                         let shareActivity = UIActivityViewController(activityItems: [fileURL], applicationActivities: nil)
                         shareActivity.completionWithItemsHandler = {
                             (type, completed, items, error) in
@@ -120,7 +121,8 @@ struct QuestionaireResultsView: View {
     }
     
     
-    func closeQuestionaire() { // TODO closed
+    /// Closes survey
+    func closeQuestionaire() {
         let group = DispatchGroup()
         group.enter()
         myQModel.delete(g: group, delID: surveyID)
@@ -134,9 +136,10 @@ struct QuestionaireResultsView: View {
     }
     
     
+    /// Get results
     func loadData() {
         if let _ = answerModel.results {
-            //
+            // do nothing
         } else {
             let group = DispatchGroup()
             group.enter()

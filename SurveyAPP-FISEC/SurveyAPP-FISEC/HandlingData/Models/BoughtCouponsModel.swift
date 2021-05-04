@@ -10,11 +10,14 @@ import Combine
 import Foundation
 
 
+/// Represents bought coupons in terms of communication with server
 class BoughtCouponsModel: GeneralModel, ObservableObject {
     @Published
     var coupons: [BoughtCouponPublic]?
     
     
+    /// Gets users bought coupons
+    /// - Parameter g: dispatch group
     func loadData(g: DispatchGroup) {
         if let id = Defaults[.userID] {
             let url = URL(string: _serverURL + "/boughtCoupons/" + id)!

@@ -10,6 +10,7 @@ import Defaults
 import SwiftUI
 
 
+/// View for showing user profile
 struct UserProfileView: View {
     @State var user: UserPublic
     
@@ -50,12 +51,6 @@ struct UserProfileView: View {
                         .foregroundColor(.blue)
                 }
                 Spacer()
-//                NavigationLink(destination: Text("about")){ // TODO about
-//                    Text("About")
-//                        .fontWeight(.bold)
-//                        .foregroundColor(.blue)
-//                }
-//                Spacer()
                 Button(action: {
                     showAlert = true
                 }) {

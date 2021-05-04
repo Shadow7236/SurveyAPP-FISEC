@@ -7,9 +7,11 @@
 
 import Foundation
 
+/// Server urls
 let _serverURL = "https://fisec.herokuapp.com"
 //let _serverURL = "http://127.0.0.1:8080"
 
+/// Known HTTP error codes
 enum HTTPError: String, LocalizedError {
     case statusCode
     case notFound
@@ -33,20 +35,18 @@ enum HTTPError: String, LocalizedError {
     }
 }
 
+/// Error for JSON encoding decoding
 enum DataError: Error {
     case jsonError(String)
 }
 
+/// Represents tag
 struct TagStruct: Codable, Equatable {
     var id: String
     var name: String
 }
 
-struct BelongsTo: Codable {
-    var id: UUID
-}
-
-
+/// Represents users answer to question
 struct FinalAnswer: Codable, Equatable {
     var userID: String
     var aType: QuestionTypes
@@ -58,19 +58,8 @@ struct FinalAnswer: Codable, Equatable {
     var options: [String]
 }
 
-struct Questionaire: Codable {
-    var id: UUID
-    var createdBy: BelongsTo
-    var title: String
-    var description: String
-    var closeAfterDate: String
-    var nQuestions: Int
-    var nRespondents: Int
-    var tokens: Double
-    var tags: [TagStruct]
-    var img: Data?
-}
 
+/// Private representation of survey
 struct QuestionairePrivate: Codable {
     var id: UUID
     var title: String
@@ -85,12 +74,14 @@ struct QuestionairePrivate: Codable {
 }
 
 
+/// Struct for creating survey
 struct CreateSurvey: Codable {
     var questionaire: Questionaire
     var questions: [Question]
 }
 
-struct PublicQuestionaire: Codable{
+/// Public representation of survey
+struct PublicQuestionnaire: Codable{
     let id: UUID
     var tags: [TagStruct]
     var title: String
@@ -101,6 +92,7 @@ struct PublicQuestionaire: Codable{
     var image: Data?
 }
 
+/// Represents added coupon
 struct AddedCoupon: Codable {
     var id: UUID
     var addedBy: BelongsTo
@@ -110,14 +102,13 @@ struct AddedCoupon: Codable {
     var token: String?
 }
 
-struct Answer: Codable {
-    var id: UUID
-    var belogsTo: BelongsTo
-    var aType: QuestionTypes
-    var aValue: String
-}
-
+/// Struct holding index of question and question
 struct QuestionIndexStruct: Equatable {
+    /// Checks if two questions are same
+    /// - Parameters:
+    ///   - lhs: question on the left
+    ///   - rhs: question on the left
+    /// - Returns: true if questions are same
     static func == (lhs: QuestionIndexStruct, rhs: QuestionIndexStruct) -> Bool {
         if lhs.index == rhs.index {
             if lhs.question.id == rhs.question.id && lhs.question.belongsToQuestionaire.id == rhs.question.belongsToQuestionaire.id && lhs.question.qOptions == rhs.question.qOptions && lhs.question.qText == rhs.question.qText && lhs.question.qType == rhs.question.qType{
@@ -131,6 +122,7 @@ struct QuestionIndexStruct: Equatable {
     var index: Int
 }
 
+/// Public representation of bought coupon
 struct BoughtCouponPublic: Codable {
     var id: String
     var activated: Bool
@@ -140,6 +132,7 @@ struct BoughtCouponPublic: Codable {
     var code: String?
 }
 
+/// Represents question
 struct Question: Codable {
     var id: UUID
     var belongsToQuestionaire: BelongsTo
@@ -150,12 +143,14 @@ struct Question: Codable {
 }
 
 
+/// Struct for user sign up
 struct UserSignup: Codable {
     var username: String
     let password: String
 }
 
 
+/// Represents user
 struct User: Codable {
     var id: UUID
     var email: String
@@ -166,16 +161,19 @@ struct User: Codable {
 }
 
 
+/// Struct for byuing coupon
 struct BuyCoupon: Codable {
     var userID: UUID
     var couponID: UUID
 }
 
+/// Represents result of survey
 struct Results: Codable {
     var nRespondents: Int
     var results: [QuestionResult]
 }
 
+/// Represents result of question
 struct QuestionResult: Codable {
     var qID: UUID
     var question: String
@@ -185,10 +183,36 @@ struct QuestionResult: Codable {
     var optionsPercentage: [Double]
 }
 
+/// Struct for exporting results
 struct ExportResult: Codable {
     var question: String
     var options: [String]?
     var qType: QuestionTypes
     var stringAnswers: [String]?
     var optionsPercentage: [Double]?
+}
+
+
+/// Struct for encoding string
+struct StringStruct: Codable {
+    var val: String
+}
+
+/// Represents relation
+struct BelongsTo: Codable {
+    var id: UUID
+}
+
+/// Represents public part of questionnaire
+struct Questionaire: Codable {
+    var id: UUID
+    var createdBy: BelongsTo
+    var title: String
+    var description: String
+    var closeAfterDate: String
+    var nQuestions: Int
+    var nRespondents: Int
+    var tokens: Double
+    var tags: [TagStruct]
+    var img: Data?
 }

@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+/// Represents list of text answers
 class DataSource: ObservableObject {
     @Published var textArray = [""] {
         willSet {
@@ -15,6 +16,7 @@ class DataSource: ObservableObject {
     }
 }
 
+/// View for creating question
 struct CreateQuestionView: View {
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
     @EnvironmentObject var answers: DataSource
@@ -70,6 +72,8 @@ struct CreateQuestionView: View {
                 })
     }
     
+    /// Saves question
+    /// - Returns: if question could be saved
     func saveQuestion() -> Bool{
         if questionText == "" {
             alertMsg = "There is no question"
@@ -135,6 +139,8 @@ struct CreateQuestionView: View {
         Array(zip(0..., answers.textArray))
     }
     
+    /// View based on question type
+    /// - Returns: specialized question view
     @ViewBuilder
     func getCreateAnswerView() -> some View {
         switch selection {

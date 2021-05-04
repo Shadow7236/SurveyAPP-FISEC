@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+/// View of closed select one question
 struct ClosedSelectOneQuestionView: View {
     @ObservedObject
     var tmpAnswer: TemporaryAnswerClass
@@ -50,6 +51,7 @@ struct ClosedSelectOneQuestionView: View {
     }
     
     
+    /// Decodes question
     func createOption() {
         do {
             let a = try JSONDecoder().decode(DatabaseClosedSelectOneQuestion.self, from: encodedOption.data(using: .utf8)!)

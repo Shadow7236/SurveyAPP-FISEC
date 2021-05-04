@@ -10,6 +10,7 @@ import Combine
 import SwiftUI
 
 
+/// View for creating survey
 struct CreateSurveyView: View {
     @StateObject
     var questionaireModel = QuestionaireModel()
@@ -82,14 +83,14 @@ struct CreateSurveyView: View {
                 }
                 Section {
                     List {
-                            ForEach(questions.indices, id: \.self) { i in
-                                NavigationLink(destination: EditQuestionView(question: $bindQuestion, source: questions[i], questionText: questions[i].qText, selection: questions[i].qType, index: i)){
-                                    QuestionPreviewView(question: questions[i])
-                                }
-                            }.onDelete(perform: { indexSet in
-                                questions.remove(atOffsets: indexSet)
-                            })
-                            
+                        ForEach(questions.indices, id: \.self) { i in
+                            NavigationLink(destination: EditQuestionView(question: $bindQuestion, source: questions[i], questionText: questions[i].qText, selection: questions[i].qType, index: i)){
+                                QuestionPreviewView(question: questions[i])
+                            }
+                        }.onDelete(perform: { indexSet in
+                            questions.remove(atOffsets: indexSet)
+                        })
+                        
                     }.onChange(of: bindQuestion, perform: { value in
                         questions[value.index] = value.question
                     })
@@ -141,7 +142,8 @@ struct CreateSurveyView: View {
         }.environmentObject(answers)
     }
     
-    func saveAndSend() -> Void {// TODO image 
+    /// Sends request to server to create survey
+    func saveAndSend() {
         if let id = userID {
             if let idd = UUID(uuidString: id) {
                 questionaireModel.newSurvey = CreateSurvey(questionaire: Questionaire(id: questionaireID, createdBy: BelongsTo(id: idd), title: name, description: description, closeAfterDate: "22.12.3000", nQuestions: questions.count, nRespondents: 0, tokens: computeTokens(), tags: tags, img: nil), questions: questions)
@@ -167,7 +169,7 @@ struct CreateSurveyView: View {
                                 self.showingAlert = true
                                 self.tags = []
                                 self.notUsed = []
-                                self.questions = [] // TODO
+                                self.questions = []
                             }
                         }
                     }
@@ -188,6 +190,9 @@ struct CreateSurveyView: View {
         }
     }
     
+    /// Controls survey
+    /// - Parameter questionnaire: controlled survey
+    /// - Returns: true if survey is correct
     func controlSurvey(questionnaire: CreateSurvey) -> Bool {
         if questionnaire.questionaire.title == "" {
             errorMsg = "Title has to be set"
@@ -204,6 +209,8 @@ struct CreateSurveyView: View {
         return true
     }
     
+    /// Computes survey reward
+    /// - Returns: reward in tokens
     func computeTokens() -> Double {
         var sum = 0
         for i in 0..<questions.count {

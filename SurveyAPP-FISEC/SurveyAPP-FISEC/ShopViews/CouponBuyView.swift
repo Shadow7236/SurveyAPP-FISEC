@@ -7,6 +7,7 @@
 import Defaults
 import SwiftUI
 
+/// View for buying coupon
 struct CouponBuyView: View {
     @StateObject
     var buyCouponModel = BuyCouponModel()
@@ -82,6 +83,8 @@ struct CouponBuyView: View {
     
     
     
+    /// <#Description#>
+    /// - Returns: <#description#>
     func sendData() -> Void {
         if let id = usrID {
             if let userID = UUID(uuidString: id) {

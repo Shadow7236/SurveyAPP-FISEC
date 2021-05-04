@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+/// View showing users progress
 struct ProgressBarView: View {
     var count: Double
     var current: Double

@@ -7,11 +7,7 @@
 
 import SwiftUI
 
-class IsSpecialSelectedModel: ObservableObject {
-    @Published
-    var isSpecialSelected = false
-}
-
+/// View of combined select one question
 struct CombinedSelectOneView: View {
     @ObservedObject
     var tmpAnswer: TemporaryAnswerClass
@@ -89,6 +85,7 @@ struct CombinedSelectOneView: View {
     }
     
     
+    /// Decodes question
     func createOption() {
         do {
             let a = try JSONDecoder().decode(DatabaseCombinedSelectOneQuestion.self, from: encodedOption.data(using: .utf8)!)

@@ -9,11 +9,14 @@ import Combine
 import Foundation
 
 
+/// Represents coupon to be bought in terms of communication with server
 class BuyCouponModel: GeneralModel, ObservableObject {
     @Published
     var coupon: BuyCoupon?
     
     
+    /// Sends request to server for buying coupon
+    /// - Parameter g: dispatch group
     func sendData(g: DispatchGroup) {
         let url = URL(string: _serverURL + "/addedCoupons/buyCoupon")!
         if let c = coupon {

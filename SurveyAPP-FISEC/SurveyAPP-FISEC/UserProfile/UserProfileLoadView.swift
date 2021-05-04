@@ -8,6 +8,7 @@
 import Defaults
 import SwiftUI
 
+/// View for loading user profile
 struct UserProfileLoadView: View {
     @StateObject
     var userModel = UserModel()
@@ -41,6 +42,7 @@ struct UserProfileLoadView: View {
         }.navigationViewStyle(StackNavigationViewStyle())
     }
     
+    /// Load user info
     func loadData() {
         let group = DispatchGroup()
         group.enter()

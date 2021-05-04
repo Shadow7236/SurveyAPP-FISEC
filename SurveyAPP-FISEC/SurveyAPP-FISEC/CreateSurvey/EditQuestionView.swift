@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+/// View for editing question
 struct EditQuestionView: View {
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
     @EnvironmentObject var answers: DataSource
@@ -61,6 +62,8 @@ struct EditQuestionView: View {
                                 })
     }
     
+    /// Saves question
+    /// - Returns: if question could be saved
     func saveQuestion() -> Bool{
         if questionText == "" {
             alertMsg = "There is no question"
@@ -134,6 +137,7 @@ struct EditQuestionView: View {
     
     @State var optionElements = [(Int, String)]()
     
+    /// Encodes question speciality
     func createOptionElements()  {
         if optionElements.isEmpty {
             do {
@@ -186,6 +190,8 @@ struct EditQuestionView: View {
         }
     }
     
+    /// View based on question type
+    /// - Returns: specialized question view
     @ViewBuilder
     func getCreateAnswerView() -> some View {
         switch selection {

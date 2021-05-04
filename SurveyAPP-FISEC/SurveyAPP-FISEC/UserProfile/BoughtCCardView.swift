@@ -7,8 +7,8 @@
 
 import SwiftUI
 
+/// View for showing one bought coupon
 struct BoughtCCardView: View {
-    
     @StateObject
     var codeModel = BoughtCouponCodeModel()
     
@@ -104,7 +104,8 @@ struct BoughtCCardView: View {
         })
     }
     
-    func sendData() -> Void {
+    /// Activates coupon and gets code
+    func sendData() {
         if let id = UUID(uuidString: coupon.id) {
             let group = DispatchGroup()
             group.enter()

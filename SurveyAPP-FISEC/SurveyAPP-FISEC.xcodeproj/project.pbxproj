@@ -28,7 +28,6 @@
 		1A87DA2C260DEB4B003DF616 /* CombinedSelectOneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A87DA2B260DEB4B003DF616 /* CombinedSelectOneView.swift */; };
 		1A87DA31260E06B3003DF616 /* CombinedSelectMultipleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A87DA30260E06B3003DF616 /* CombinedSelectMultipleView.swift */; };
 		1A87DA3A260E39CA003DF616 /* AddCouponSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A87DA39260E39CA003DF616 /* AddCouponSheetView.swift */; };
-		1A89A6FB26348F12003F7102 /* SwiftUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A89A6FA26348F12003F7102 /* SwiftUIView.swift */; };
 		1A8FEB2E25DA9B0E00F128CE /* UserProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A8FEB2D25DA9B0E00F128CE /* UserProfileView.swift */; };
 		1A9193E32615BE79009882A8 /* BuyCouponModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A9193E22615BE79009882A8 /* BuyCouponModel.swift */; };
 		1A9193E92615D7DF009882A8 /* Defaults in Frameworks */ = {isa = PBXBuildFile; productRef = 1A9193E82615D7DF009882A8 /* Defaults */; };
@@ -66,6 +65,7 @@
 		1AC858DC25DFCADD0040D2C3 /* ShopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC858DB25DFCADD0040D2C3 /* ShopView.swift */; };
 		1AC858E125DFCBC20040D2C3 /* CouponBuyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC858E025DFCBC20040D2C3 /* CouponBuyView.swift */; };
 		1AC8F24E2614D39100754A78 /* AddedCouponModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC8F24D2614D39100754A78 /* AddedCouponModel.swift */; };
+		1AD1ACC126415BE900B4AB7A /* MulitilineTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD1ACC026415BE900B4AB7A /* MulitilineTextFieldView.swift */; };
 		1AD50A792612116E00D4CB2E /* URLSessionExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD50A782612116E00D4CB2E /* URLSessionExtension.swift */; };
 		1AD50A7E261211AA00D4CB2E /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD50A7D261211AA00D4CB2E /* UserModel.swift */; };
 		1AD50A832612124900D4CB2E /* QuestionaireModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD50A822612124900D4CB2E /* QuestionaireModel.swift */; };
@@ -121,7 +121,6 @@
 		1A87DA2B260DEB4B003DF616 /* CombinedSelectOneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombinedSelectOneView.swift; sourceTree = "<group>"; };
 		1A87DA30260E06B3003DF616 /* CombinedSelectMultipleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombinedSelectMultipleView.swift; sourceTree = "<group>"; };
 		1A87DA39260E39CA003DF616 /* AddCouponSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCouponSheetView.swift; sourceTree = "<group>"; };
-		1A89A6FA26348F12003F7102 /* SwiftUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIView.swift; sourceTree = "<group>"; };
 		1A8FEB2D25DA9B0E00F128CE /* UserProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileView.swift; sourceTree = "<group>"; };
 		1A9193E22615BE79009882A8 /* BuyCouponModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuyCouponModel.swift; sourceTree = "<group>"; };
 		1A9193ED2615D809009882A8 /* LogInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInView.swift; sourceTree = "<group>"; };
@@ -158,6 +157,7 @@
 		1AC858DB25DFCADD0040D2C3 /* ShopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopView.swift; sourceTree = "<group>"; };
 		1AC858E025DFCBC20040D2C3 /* CouponBuyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CouponBuyView.swift; sourceTree = "<group>"; };
 		1AC8F24D2614D39100754A78 /* AddedCouponModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddedCouponModel.swift; sourceTree = "<group>"; };
+		1AD1ACC026415BE900B4AB7A /* MulitilineTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MulitilineTextFieldView.swift; sourceTree = "<group>"; };
 		1AD50A782612116E00D4CB2E /* URLSessionExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionExtension.swift; sourceTree = "<group>"; };
 		1AD50A7D261211AA00D4CB2E /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		1AD50A822612124900D4CB2E /* QuestionaireModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionaireModel.swift; sourceTree = "<group>"; };
@@ -238,7 +238,6 @@
 				1A2E5B9625D14EC60099051B /* SurveyAPP_FISECApp.swift */,
 				1A2E5B9825D14EC60099051B /* ContentView.swift */,
 				1A91941C26162070009882A8 /* MainView.swift */,
-				1A89A6FA26348F12003F7102 /* SwiftUIView.swift */,
 				1A919404261600A1009882A8 /* SignUpView.swift */,
 				1A9193ED2615D809009882A8 /* LogInView.swift */,
 				1AC8F2552614E83500754A78 /* ShopViews */,
@@ -335,6 +334,7 @@
 			isa = PBXGroup;
 			children = (
 				1AA85A21260B396D00CA318E /* ClosedSelectOneQuestionView.swift */,
+				1AD1ACC026415BE900B4AB7A /* MulitilineTextFieldView.swift */,
 				1AA66786260A2E4D00188933 /* OpenedQuestionView.swift */,
 				1A87DA26260DD2C7003DF616 /* ClosedSelectMultipleView.swift */,
 				1A87DA2B260DEB4B003DF616 /* CombinedSelectOneView.swift */,
@@ -519,8 +519,8 @@
 				1A87DA3A260E39CA003DF616 /* AddCouponSheetView.swift in Sources */,
 				1A7EA788262EF3020071A86D /* ExportResults.swift in Sources */,
 				1A2E5BA325D14EC70099051B /* SurveyAPP_FISEC.xcdatamodeld in Sources */,
+				1AD1ACC126415BE900B4AB7A /* MulitilineTextFieldView.swift in Sources */,
 				1A9193E32615BE79009882A8 /* BuyCouponModel.swift in Sources */,
-				1A89A6FB26348F12003F7102 /* SwiftUIView.swift in Sources */,
 				1A2E5BA025D14EC70099051B /* Persistence.swift in Sources */,
 				1AD50A792612116E00D4CB2E /* URLSessionExtension.swift in Sources */,
 				1A87DA2C260DEB4B003DF616 /* CombinedSelectOneView.swift in Sources */,

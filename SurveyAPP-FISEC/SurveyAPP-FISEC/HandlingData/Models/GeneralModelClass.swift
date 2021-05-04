@@ -9,12 +9,14 @@ import Combine
 import Foundation
 
 
+/// Represents general class in terms of communication with server
 class GeneralModel {
     @Published
     var error: ModelError?
     
     var subscriber: Cancellable?
     
+    /// Known errors
     enum ModelError: Error, Identifiable, CustomStringConvertible {
         case requestError(Error)
         case otherError(String)
@@ -37,12 +39,16 @@ class GeneralModel {
         _loadData()
     }
     
+    /// Reloads data
     func reloadData() {
         _loadData()
     }
     
+    /// Loads data
     func _loadData() {}
     
+    /// Handles HTTP answer code
+    /// - Parameter completion: represents complition code
     func handleEnd(completion: Subscribers.Completion<Error>) {
         defer { self.subscriber = nil }
         switch completion {
@@ -53,6 +59,10 @@ class GeneralModel {
         }
     }
     
+    /// Handles HTTP answer code and assures end of waiting
+    /// - Parameters:
+    ///   - completion: represents complition code
+    ///   - g: dispatch group
     func handleEnd(completion: Subscribers.Completion<Error>, g: DispatchGroup) {
         handleEnd(completion: completion)
         g.leave()

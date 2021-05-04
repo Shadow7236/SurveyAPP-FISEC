@@ -7,6 +7,7 @@
 import Defaults
 import SwiftUI
 
+/// View for signing up
 struct SignUpView: View {
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
     
@@ -25,11 +26,10 @@ struct SignUpView: View {
         VStack {
             Text("FISEC App")
                 .font(.title)
-//                .foregroundColor(.white)
                 .fontWeight(.bold)
                 .shadow(radius: 13)
                 .padding(.top)
-            Spacer() // TODO Logo
+            Spacer()
             VStack{
                 TextField("Email", text: self.$email)
                     .padding()
@@ -74,11 +74,9 @@ struct SignUpView: View {
             })
             Spacer()
         }
-//        .background( // TODO graphics
-//            LinearGradient(gradient: Gradient(colors: [.green, .yellow]), startPoint: .top, endPoint: .bottom)
-//              .edgesIgnoringSafeArea(.all))
     }
     
+    /// Sends sign up credentials to server and logs in user
     func signUp() {
         if password1 != password2 {
             errorMsg = "Passwords are not same."

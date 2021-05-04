@@ -8,6 +8,7 @@
 import Defaults
 import SwiftUI
 
+/// View for adding coupon
 struct AddCouponSheetView: View {
     @Environment(\.presentationMode) var presentationMode
     
@@ -93,12 +94,15 @@ struct AddCouponSheetView: View {
         
     }
     
+    /// Counts token value of coupon
+    /// - Returns: coupon value in tokens
     func countValue() -> Double {
         let v = Double(value) ?? 0
         return v * 40
     }
     
-    func saveAndSend() -> Void {
+    /// Sends request for creating new coupon to server
+    func saveAndSend() {
         if tokVal == 0 {
             showAlert = true
             alertMsg = "Something went wrong"

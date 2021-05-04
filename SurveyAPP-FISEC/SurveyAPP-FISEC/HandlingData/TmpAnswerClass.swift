@@ -7,16 +7,23 @@
 
 import Foundation
 
+/// Handles user answers while answering survey
 class TemporaryAnswerClass: ObservableObject {
     @Published
     var tmpAnswer: FinalAnswer? = nil
     
     var answers: [FinalAnswer] = []
     
+    /// Deletes current answer
     func nilIt() {
         self.tmpAnswer = nil
     }
     
+    /// Adds new answer
+    /// - Parameters:
+    ///   - index: index of answer
+    ///   - check: idicates if answer should be checked
+    /// - Returns: adds current answer
     func addAnswer(index: Int, check: Bool = true) -> (Bool, String) {
         if let b = tmpAnswer {
             if check {
@@ -45,6 +52,9 @@ class TemporaryAnswerClass: ObservableObject {
         return (false, "There is no answer.")
     }
     
+    /// Checks if answer is correct
+    /// - Parameter fansw: answer to ge checked
+    /// - Returns: tuple of result indicator and result msg
     func isAnswerCorrect(fansw: FinalAnswer) -> (Bool, String) {
         switch fansw.aType {
         case .Opened:

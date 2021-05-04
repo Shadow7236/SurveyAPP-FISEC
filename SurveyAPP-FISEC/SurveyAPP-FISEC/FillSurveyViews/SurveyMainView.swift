@@ -8,10 +8,9 @@ import Combine
 import SwiftUI
 
 
+/// View for showing survey detail
 struct SurveyMainView: View {
-    
-    
-    var survey: PublicQuestionaire
+    var survey: PublicQuestionnaire
     @State private var questions: [Question]?
     @State private var cancellable: AnyCancellable?
     @Binding var rootIsActive: Bool
@@ -107,7 +106,7 @@ struct SurveyMainView: View {
 
 struct SurveyMainView_Previews: PreviewProvider {
     static var previews: some View {
-        let a = PublicQuestionaire(id: UUID(), tags: [], title: "Title", description: "Description", closeAfterDate: "22.12.1222", nQuestions: 3, tokens: 200,  image: nil)
+        let a = PublicQuestionnaire(id: UUID(), tags: [], title: "Title", description: "Description", closeAfterDate: "22.12.1222", nQuestions: 3, tokens: 200,  image: nil)
         NavigationView {
             SurveyMainView(survey: a, rootIsActive: .constant(false))
         }

@@ -7,13 +7,11 @@
 
 import Foundation
 
-func getDocumentsDirectory() -> URL {
-    let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
-    return paths[0]
-}
 
 
-
+/// Prepares survey results for exporting
+/// - Parameter results: survey results
+/// - Returns: encoded results
 func prepareData(results: [QuestionResult]) -> String {
     var rs = [ExportResult]()
     for item in results {

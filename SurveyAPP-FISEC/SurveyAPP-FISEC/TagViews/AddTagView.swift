@@ -2,12 +2,11 @@
 //  AddTagView.swift
 //  SurveyAPP-FISEC
 //
-//  Created by Radovan Klembara on 24/03/2021.
-//
 
 
 import SwiftUI
 
+/// View for adding tags
 struct AddTagView: View {
     @Environment(\.presentationMode) var presentationMode
     @State var text: String = ""
@@ -36,7 +35,8 @@ struct AddTagView: View {
                     Text("Save")
                 }
             }.padding()
-            // https://www.appcoda.com/swiftui-search-bar/
+            /// Created by Simon Ng
+            /// Taken from https://www.appcoda.com/swiftui-search-bar/
             VStack {
                 TextField("Search tags:", text: $text)
                     .padding(7)
@@ -90,6 +90,7 @@ struct AddTagView: View {
     }
     
     
+    /// Loads tags 
     func loadData() {
         if tags.isEmpty {
             let group = DispatchGroup()

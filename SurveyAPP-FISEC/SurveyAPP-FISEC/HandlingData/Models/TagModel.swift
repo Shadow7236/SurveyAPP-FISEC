@@ -10,12 +10,15 @@ import Foundation
 
 
 
+/// Represents tags in terms of communication with server
 class TagModel: GeneralModel, ObservableObject {
     @Published
     var tags: [TagStruct]?
     
     override init() {}
     
+    /// Gets all tags
+    /// - Parameter g: dispatch group
     func loadAll(g: DispatchGroup) {
         let url = URL(string: _serverURL + "/tags" )!
         self.subscriber = URLSession.requestPublisher(url: url, resultAs: [TagStruct].self)
@@ -25,16 +28,4 @@ class TagModel: GeneralModel, ObservableObject {
                 self?.tags = q
             }
     }
-    
-    func loadSurveyTags(id: UUID, g: DispatchGroup) {
-        let stringID = id.uuidString
-        let url = URL(string: _serverURL + "/tags/" + stringID)!
-        self.subscriber = URLSession.requestPublisher(url: url, resultAs: [TagStruct].self)
-            .sink { [weak self] completion in
-                self?.handleEnd(completion: completion, g: g)
-            } receiveValue: { [weak self] q in
-                self?.tags = q
-            }
-    }
-    
 }

@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+/// View for showing added coupons
 struct AddedCouponsView: View {
     @StateObject
     var addedCoupons = AddedCouponModel()
@@ -41,8 +42,10 @@ struct AddedCouponsView: View {
         .onAppear(perform: {
             loadData()
         })
+        .navigationTitle(Text("Added coupons"))
     }
     
+    /// Loads coupons added by user
     func loadData(){
         let group = DispatchGroup()
         group.enter()

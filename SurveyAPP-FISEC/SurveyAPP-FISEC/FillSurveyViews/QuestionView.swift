@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+/// View for showing question
 struct QuestionView: View {
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
     
@@ -136,6 +137,7 @@ struct QuestionView: View {
         })
     }
     
+    /// Loads question
     func loadData() {
         let group = DispatchGroup()
         group.enter()
@@ -152,7 +154,8 @@ struct QuestionView: View {
     
     
     
-    func sendData() -> Void {
+    /// Sends answers to server
+    func sendData()  {
         let check = tmpAnswer.addAnswer(index: index)
         if check.0 {
             if !tmpAnswer.answers.isEmpty {

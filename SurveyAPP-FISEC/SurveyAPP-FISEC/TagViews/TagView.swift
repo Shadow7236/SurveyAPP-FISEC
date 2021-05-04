@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+/// View for showing tags
 struct TagView: View {
     @Binding var tags: [TagStruct]
     @Binding var selectedFrom: [TagStruct]

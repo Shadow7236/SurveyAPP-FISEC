@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+/// View for editing profile
 struct EditProfileSheetView: View {
     @Environment(\.presentationMode) var presentationMode
     
@@ -61,8 +62,7 @@ struct EditProfileSheetView: View {
         }
     }
     
-    
-    
+    /// Sends request editing user
     func saveChanges() {
         if email != "" {
             user.mail = email

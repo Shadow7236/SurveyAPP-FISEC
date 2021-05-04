@@ -14,12 +14,14 @@ extension Defaults.Keys {
     static let tokens = Key<Double>("tokens", default: 0.0)
 }
 
+/// Public representation of user
 struct UserPublic: Codable {
     var mail: String
     var tokens: Double
     let id: UUID
 }
 
+/// Represents HTTP answer of sign up/log in
 struct NewSession: Codable {
   let token: String
   let user: UserPublic

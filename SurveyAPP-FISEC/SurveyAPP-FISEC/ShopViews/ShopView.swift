@@ -9,13 +9,15 @@ import Defaults
 import Combine
 import SwiftUI
 
+/// View for showing shop
 struct ShopView: View {
-    
     @StateObject
     var couponModel = AddedCouponModel()
     
     @State var coupons = [AddedCoupon]()
     @State private var showingSheet = false
+    @State var showAlert = false
+    @State var msg = "Unexpected error."
     
     @Default(.token) var tok
     @Default(.userID) var userID
@@ -33,7 +35,8 @@ struct ShopView: View {
                         }
                         
                 }
-            }.navigationBarItems(leading:
+            }
+            .navigationBarItems(leading:
                                     HStack {
                                         Text(String(format: "%.2f", Defaults[.tokens]))
                     Image(systemName: "circlebadge.2.fill")
@@ -51,11 +54,14 @@ struct ShopView: View {
                 }
             )
             .navigationBarTitle(Text("Shop"), displayMode: .inline)
-        }.onAppear(perform: loadData)
+        }
+        .onAppear(perform: loadData)
         .navigationViewStyle(StackNavigationViewStyle())
+        
     }
     
     //TODO alert err
+    /// Loads chop content
     func loadData() {
         let group = DispatchGroup()
         group.enter()
@@ -65,7 +71,12 @@ struct ShopView: View {
                 if e.description == "Unauthorized" {
                     tok = nil
                     userID = nil
+                } else {
+                    showAlert = true
+                    msg = e.description
                 }
+            } else {
+                msg = "Unexpected error."
             }
             coupons = couponModel.coupons ?? []
         }

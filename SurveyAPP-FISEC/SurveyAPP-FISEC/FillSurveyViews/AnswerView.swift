@@ -8,6 +8,7 @@
 import Defaults
 import SwiftUI
 
+/// View for answering
 struct AnswerView: View {
     @ObservedObject
     var tmpAnswer: TemporaryAnswerClass
@@ -32,7 +33,9 @@ struct AnswerView: View {
         getView()
     }
     
-    // todo change anyView
+    
+    /// Creates view depending on question type
+    /// - Returns: view
     @ViewBuilder
     func getView() -> some View {
         if let usrID = Defaults[.userID] {

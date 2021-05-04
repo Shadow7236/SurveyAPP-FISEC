@@ -8,6 +8,7 @@
 import Defaults
 import SwiftUI
 
+/// View for loging in
 struct LogInView: View {
     @State private var email = ""
     @State private var password = ""
@@ -25,11 +26,10 @@ struct LogInView: View {
             VStack {
                 Text("FISEC App")
                     .font(.title)
-                    //                    .foregroundColor(.white)
                     .fontWeight(.bold)
                     .shadow(radius: 13)
                     .padding(.top)
-                Spacer() // TODO Logo
+                Spacer()
                 VStack{
                     HStack{
                         TextField("Email", text: self.$email)
@@ -85,12 +85,10 @@ struct LogInView: View {
                     }
                 }
             }
-            //            .background( // TODO graphics
-            //                LinearGradient(gradient: Gradient(colors: [.green, .yellow]), startPoint: .top, endPoint: .bottom)
-            //                    .edgesIgnoringSafeArea(.all))
         }
     }
     
+    /// Sends log in credentials to server and logs in user to application
     func logIn() {
         userModel.user = UserSignup(username: email, password: password)
         let group = DispatchGroup()

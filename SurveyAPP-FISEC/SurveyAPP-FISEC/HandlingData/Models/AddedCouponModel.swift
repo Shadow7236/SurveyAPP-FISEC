@@ -10,6 +10,7 @@ import Foundation
 import Defaults
 
 
+/// Represents added coupons in terms of communication with server
 class AddedCouponModel: GeneralModel, ObservableObject {
     @Published
     var coupons: [AddedCoupon]?
@@ -17,10 +18,16 @@ class AddedCouponModel: GeneralModel, ObservableObject {
     @Published
     var newCoupon: AddedCoupon?
     
+    /// Loads coupons
+    /// - Parameter g: dispatch group
     func reloadData(g: DispatchGroup) {
         _loadData(g: g)
     }
     
+    /// Deletes added coupon
+    /// - Parameters:
+    ///   - g: dispatch group
+    ///   - id: coupon identifier
     func delete(g: DispatchGroup, id: UUID)  {
         if let stringID = Defaults[.userID] {
             let url = URL(string: _serverURL + "/addedCoupons/" + id.uuidString + "/" + stringID)!
@@ -34,6 +41,8 @@ class AddedCouponModel: GeneralModel, ObservableObject {
         }
     }
     
+    /// Loads coupons added by user
+    /// - Parameter g: dispatch group
     func loadMineData(g: DispatchGroup) {
         if let stringID = Defaults[.userID] {
             let url = URL(string: _serverURL + "/addedCoupons/" + stringID)!
@@ -49,6 +58,8 @@ class AddedCouponModel: GeneralModel, ObservableObject {
         }
     }
     
+    /// Loads coupons
+    /// - Parameter g: dispatch group
     func _loadData(g: DispatchGroup) {
         let url = URL(string: _serverURL + "/addedCoupons")!
         self.subscriber = URLSession.requestPublisher(url: url, resultAs: [AddedCoupon].self)
@@ -59,6 +70,8 @@ class AddedCouponModel: GeneralModel, ObservableObject {
             }
     }
     
+    /// Sends request for creating new coupon
+    /// - Parameter g: dispatch group
     func sendData(g: DispatchGroup) {
         let url = URL(string: _serverURL + "/addedCoupons")!
         if let coupon = newCoupon {

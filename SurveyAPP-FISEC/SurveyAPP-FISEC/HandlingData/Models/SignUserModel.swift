@@ -8,6 +8,7 @@
 import Combine
 import Foundation
 
+/// Represents user in terms of sign up/log in communication with server
 class SignUserModel: GeneralModel, ObservableObject {
     @Published
     var user: UserSignup?
@@ -17,6 +18,8 @@ class SignUserModel: GeneralModel, ObservableObject {
     @Published
     var publicUser: UserPublic?
     
+    /// Signs up user
+    /// - Parameter g: dispatch group
     func sendData(g: DispatchGroup) {
         let url = URL(string: _serverURL + "/users/signup")!
         self.subscriber = URLSession.requestPublisher(method: .post, url: url, body: user, resultAs: NewSession.self)
@@ -27,6 +30,8 @@ class SignUserModel: GeneralModel, ObservableObject {
             }
     }
     
+    /// Logs in user
+    /// - Parameter g: dispatch group
     func logIn(g: DispatchGroup) {
         let url = URL(string: _serverURL + "/users/login")!
         self.subscriber = URLSession.requestPublisher(method: .post, url: url, body: user, resultAs: NewSession.self)

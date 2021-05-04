@@ -2,11 +2,10 @@
 //  QuestionResultDetailView.swift
 //  SurveyAPP-FISEC
 //
-//  Created by Radovan Klembara on 27/03/2021.
-//
 
 import SwiftUI
 
+/// View for showing question result
 struct QuestionResultDetailView: View {
     var result: QuestionResult
     
@@ -24,9 +23,10 @@ struct QuestionResultDetailView: View {
             }
     }
     
+    /// Cretes view depending on question type
+    /// - Returns: view
     @ViewBuilder
     func getOptions() -> some View {
-    
         switch result.qType {
         case .Opened:
             List{
@@ -53,7 +53,10 @@ struct QuestionResultDetailView: View {
                         self.makePieChart(geometry, pieChartData: self.pieChartData.data)
                     }.frame(alignment: .top)
                     .padding()
-                }.onAppear(perform: {
+                }
+                //  Created by Kent Winder
+                //  Taken from https://blog.nextzy.me/create-a-simple-pie-chart-with-swiftui-e39d75b4a740
+                .onAppear(perform: {
                     makeDataItems()
                     pieChartData = PieChartData(data: result.optionsPercentage, dataItems: dataItems)
                 })
@@ -89,7 +92,10 @@ struct QuestionResultDetailView: View {
                                     Spacer()
                                 }
                             }
-                    }.onAppear(perform: {
+                    }
+                    //  Created by Kent Winder
+                    //  Taken from https://blog.nextzy.me/create-a-simple-pie-chart-with-swiftui-e39d75b4a740
+                    .onAppear(perform: {
                         makeDataItems()
                         pieChartData = PieChartData(data: result.optionsPercentage, dataItems: dataItems)
                     })
@@ -98,6 +104,8 @@ struct QuestionResultDetailView: View {
     }
     
     
+    //  Created by Kent Winder
+    //  Taken from https://blog.nextzy.me/create-a-simple-pie-chart-with-swiftui-e39d75b4a740
     func makePieChart(_ geometry: GeometryProxy, pieChartData: [SlideData]) -> some View {
             return ZStack {
                 ForEach(0..<pieChartData.count, id: \.self) { index in
@@ -106,6 +114,8 @@ struct QuestionResultDetailView: View {
             }
         }
     
+    //  Created by Kent Winder
+    //  Taken from https://blog.nextzy.me/create-a-simple-pie-chart-with-swiftui-e39d75b4a740
     func makeDataItems() -> Void {
         for i in 0..<result.options.count {
             dataItems.append(DataItem(name: result.options[i], value: result.optionsPercentage[i]))

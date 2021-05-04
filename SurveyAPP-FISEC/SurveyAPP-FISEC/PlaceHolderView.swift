@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+/// Placeholder view
 struct PlaceHolderView: View {
     var txt: String
     
