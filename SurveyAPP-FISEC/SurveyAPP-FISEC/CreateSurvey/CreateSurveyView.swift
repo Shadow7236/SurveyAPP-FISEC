@@ -13,7 +13,7 @@ import SwiftUI
 /// View for creating survey
 struct CreateSurveyView: View {
     @StateObject
-    var questionaireModel = QuestionaireModel()
+    var questionnaireModel = QuestionnaireModel()
     
     @Default(.userID) var userID
     
@@ -30,10 +30,10 @@ struct CreateSurveyView: View {
     
     @State var isActive: Bool = false
     
-    @State var questionaireID = UUID()
+    @State var questionnaireID = UUID()
     
     @State private var showingAlert = false
-    @State var bindQuestion = QuestionIndexStruct(question: Question(id: UUID(), belongsToQuestionaire: BelongsTo(id: UUID()), qText: "", qType: .Opened, qOptions: "", index: -1), index: -1)
+    @State var bindQuestion = QuestionIndexStruct(question: Question(id: UUID(), belongsToQuestionnaire: BelongsTo(id: UUID()), qText: "", qType: .Opened, qOptions: "", index: -1), index: -1)
     @State private var errorMsg = "Unexpected error"
     
     
@@ -75,7 +75,7 @@ struct CreateSurveyView: View {
                     Text("Number of questions: \(questions.count)")
                 }
                 Section {
-                    NavigationLink(destination: CreateQuestionView(questions: $questions, questionaireID: questionaireID), isActive: self.$isActive){
+                    NavigationLink(destination: CreateQuestionView(questions: $questions, questionnaireID: questionnaireID), isActive: self.$isActive){
                         Text("Add question")
                     }.isDetailLink(false)
                     .frame(alignment: .center)
@@ -89,8 +89,10 @@ struct CreateSurveyView: View {
                             }
                         }.onDelete(perform: { indexSet in
                             questions.remove(atOffsets: indexSet)
+                            for i in 0..<questions.count {
+                                questions[i].index = i
+                            }
                         })
-                        
                     }.onChange(of: bindQuestion, perform: { value in
                         questions[value.index] = value.question
                     })
@@ -120,16 +122,16 @@ struct CreateSurveyView: View {
                             self.tags = []
                             self.description = ""
                             self.name = ""
-                            self.questionaireModel.survey = nil
-                            self.questionaireID = UUID()
+                            self.questionnaireModel.survey = nil
+                            self.questionnaireID = UUID()
                         }, secondaryButton: .default(Text("No")))
                     } else if chooseAlert == 2{
                         return Alert(title: Text("Success"), message: Text(errorMsg), dismissButton: .default(Text("Ok")){
-                            questionaireModel.error = nil
+                            questionnaireModel.error = nil
                         })
                     } else{
                         return Alert(title: Text("Error"), message: Text(errorMsg), dismissButton: .default(Text("Ok")){
-                            questionaireModel.error = nil
+                            questionnaireModel.error = nil
                         })
                     }
                 }
@@ -146,16 +148,14 @@ struct CreateSurveyView: View {
     func saveAndSend() {
         if let id = userID {
             if let idd = UUID(uuidString: id) {
-                questionaireModel.newSurvey = CreateSurvey(questionaire: Questionaire(id: questionaireID, createdBy: BelongsTo(id: idd), title: name, description: description, closeAfterDate: "22.12.3000", nQuestions: questions.count, nRespondents: 0, tokens: computeTokens(), tags: tags, img: nil), questions: questions)
-                if let s = questionaireModel.newSurvey{
+                questionnaireModel.newSurvey = CreateSurvey(questionnaire: Questionnaire(id: questionnaireID, createdBy: BelongsTo(id: idd), title: name, description: description, closeAfterDate: "22.12.3000", nQuestions: questions.count, nRespondents: 0, tokens: computeTokens(), tags: tags, img: nil), questions: questions)
+                if let s = questionnaireModel.newSurvey{
                     if controlSurvey(questionnaire: s) {
                         let group = DispatchGroup()
                         group.enter()
-                        print("Strat sending")
-                        questionaireModel.sendData(g: group)
+                        questionnaireModel.sendData(g: group)
                         group.notify(queue: DispatchQueue.main){
-                            print("in mainQ")
-                            if let e = questionaireModel.error {
+                            if let e = questionnaireModel.error {
                                 self.errorMsg = e.description
                                 self.chooseAlert = 1
                                 self.showingAlert = true
@@ -165,7 +165,7 @@ struct CreateSurveyView: View {
                                 self.name = ""
                                 self.errorMsg = "Successfully created"
                                 self.chooseAlert = 2
-                                self.questionaireID = UUID()
+                                self.questionnaireID = UUID()
                                 self.showingAlert = true
                                 self.tags = []
                                 self.notUsed = []
@@ -194,13 +194,13 @@ struct CreateSurveyView: View {
     /// - Parameter questionnaire: controlled survey
     /// - Returns: true if survey is correct
     func controlSurvey(questionnaire: CreateSurvey) -> Bool {
-        if questionnaire.questionaire.title == "" {
+        if questionnaire.questionnaire.title == "" {
             errorMsg = "Title has to be set"
             chooseAlert = 1
             self.showingAlert = true
             return false
         }
-        if questionnaire.questionaire.nQuestions <= 0 {
+        if questionnaire.questionnaire.nQuestions <= 0 {
             errorMsg = "There has to be at least one question"
             chooseAlert = 1
             self.showingAlert = true

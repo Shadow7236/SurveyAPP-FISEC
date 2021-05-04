@@ -1,5 +1,5 @@
 //
-//  MyQuestionairesModel.swift
+//  MyQuestionnairesModel.swift
 //  SurveyAPP-FISEC
 //
 //  Created by Radovan Klembara on 30/03/2021.
@@ -11,15 +11,15 @@ import Foundation
 
 
 /// Represents users surveys in terms of communication with server
-class MyQuestionairesModel: GeneralModel, ObservableObject {
+class MyQuestionnairesModel: GeneralModel, ObservableObject {
     @Published
-    var surveys: [QuestionairePrivate]?
+    var surveys: [QuestionnairePrivate]?
     
     /// Loads users surveys
     /// - Parameters:
     ///   - id: survey identifier
     ///   - g: dispatch group
-    func loadQuestionaires(id: UUID, g: DispatchGroup) {
+    func loadQuestionnaires(id: UUID, g: DispatchGroup) {
         _loadData(id: id, g: g)
     }
     
@@ -30,7 +30,7 @@ class MyQuestionairesModel: GeneralModel, ObservableObject {
     func _loadData(id: UUID, g: DispatchGroup) {
         let stringID = id.uuidString
         let url = URL(string: _serverURL + "/questionnaires/mySurveys/" + stringID)!
-        self.subscriber = URLSession.requestPublisher(url: url, resultAs: [QuestionairePrivate].self)
+        self.subscriber = URLSession.requestPublisher(url: url, resultAs: [QuestionnairePrivate].self)
             .sink { [weak self] completion in
                 self?.handleEnd(completion: completion, g: g)
             } receiveValue: { [weak self] s in

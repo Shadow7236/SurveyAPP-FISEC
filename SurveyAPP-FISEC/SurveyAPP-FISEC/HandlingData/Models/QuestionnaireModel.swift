@@ -1,5 +1,5 @@
 //
-//  QuestionaireModel.swift
+//  QuestionnaireModel.swift
 //  SurveyAPP-FISEC
 //
 //  Created by Radovan Klembara on 29/03/2021.
@@ -10,9 +10,9 @@ import Foundation
 
 
 /// Represents survey in terms of communication with server
-class QuestionaireModel: GeneralModel, ObservableObject {
+class QuestionnaireModel: GeneralModel, ObservableObject {
     @Published
-    var survey: Questionaire?
+    var survey: Questionnaire?
     
     @Published
     var s: PublicQuestionnaire?
@@ -21,7 +21,7 @@ class QuestionaireModel: GeneralModel, ObservableObject {
     
     /// Gets survey
     /// - Parameter id: survey identifier
-    func loadQuestionaire(id: UUID) {
+    func loadQuestionnaire(id: UUID) {
         _loadData(id: id)
     }
     
@@ -30,7 +30,7 @@ class QuestionaireModel: GeneralModel, ObservableObject {
     func _loadData(id: UUID) {
         let stringID = id.uuidString
         let url = URL(string: _serverURL + "/questionnaires/detail/" + stringID)!
-        self.subscriber = URLSession.requestPublisher(url: url, resultAs: Questionaire.self)
+        self.subscriber = URLSession.requestPublisher(url: url, resultAs: Questionnaire.self)
             .sink { [weak self] completion in
                 self?.handleEnd(completion: completion)
             } receiveValue: { [weak self] s in

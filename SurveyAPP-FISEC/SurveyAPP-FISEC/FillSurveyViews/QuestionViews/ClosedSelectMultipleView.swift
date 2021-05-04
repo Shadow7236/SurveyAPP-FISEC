@@ -22,8 +22,8 @@ struct ClosedSelectMultipleView: View {
                 ForEach(a.options.indices, id: \.self) { i in
                     Button(action: {
                         if a.selected.contains(i) {
-                            if let index = a.selected.firstIndex(of: i) {
-                                tmpAnswer.tmpAnswer?.selected.remove(at: index)
+                            if let ind = a.selected.firstIndex(of: i) {
+                                tmpAnswer.tmpAnswer?.selected.remove(at: ind)
                             }
                         } else {
                             tmpAnswer.tmpAnswer?.selected.append(i)
@@ -75,6 +75,6 @@ struct ClosedSelectMultipleView: View {
 
 struct ClosedSelectMultipleView_Previews: PreviewProvider {
     static var previews: some View {
-        ClosedSelectMultipleView(tmpAnswer: TemporaryAnswerClass(), encodedOption: "{ \n options: [\"asdf\",\n \"haha\"], \n selected: 0 \n }", index: 0, noAnswerYet: FinalAnswer(userID: "", aType: .ClosedSelectMultiple, answer: "", selected: [-1], question: "", questionaire: UUID(), index: 0, options: []))
+        ClosedSelectMultipleView(tmpAnswer: TemporaryAnswerClass(), encodedOption: "{ \n options: [\"asdf\",\n \"haha\"], \n selected: 0 \n }", index: 0, noAnswerYet: FinalAnswer(userID: "", aType: .ClosedSelectMultiple, answer: "", selected: [-1], question: "", questionnaire: UUID(), index: 0, options: []))
     }
 }

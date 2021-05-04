@@ -12,7 +12,7 @@ import SwiftUI
 
 /// View for browsing surveys
 struct BrowseNewSurveysView: View {
-    @State private var questionaires = [PublicQuestionnaire]()
+    @State private var questionnaires = [PublicQuestionnaire]()
     @State private var isActive = [Bool]()
     @State private var showAlert = false
     @State private var errMsg = "Unknown error. Please try again later."
@@ -25,26 +25,24 @@ struct BrowseNewSurveysView: View {
     @Default(.userID) var userID
     
     @StateObject
-    var questionairesModel = QnairesModel()
+    var questionnairesModel = QnairesModel()
     
     var body: some View {
-        // TODO Reload
         NavigationView{
             Group {
-                if questionaires.isEmpty {
+                if questionnaires.isEmpty {
                     PlaceHolderView(txt: "There are no surveys left")
                 } else {
                     List {
-                        ForEach(questionaires.indices, id: \.self) { i in
-                            if haveSame(qTags: questionaires[i].tags) {
+                        ForEach(questionnaires.indices, id: \.self) { i in
+                            if haveSame(qTags: questionnaires[i].tags) {
                                 NavigationLink(
-                                    destination: SurveyMainView(survey: questionaires[i], rootIsActive: self.$isActive[i]), isActive: self.$isActive[i]){
-                                    MainPageSurveyPreview(questionaire: questionaires[i])
+                                    destination: SurveyMainView(survey: questionnaires[i], rootIsActive: self.$isActive[i]), isActive: self.$isActive[i]){
+                                    MainPageSurveyPreview(questionnaire: questionnaires[i])
                                 }.isDetailLink(false)
                             }
                         }
                     }.listStyle(PlainListStyle())
-                    
                 }
             }.navigationBarTitle(Text("Surveys"), displayMode: .inline)
             .navigationBarItems(leading: HStack {
@@ -60,14 +58,14 @@ struct BrowseNewSurveysView: View {
                     }.foregroundColor(.blue)
                 })
         }.onAppear(perform: {
-                questionaires = []
+                questionnaires = []
                 loadData()
             }).sheet(isPresented: $showSheet, content: {
                 AddTagView(tags: $tags, newTags: $newTags)
             })
         .alert(isPresented: $showAlert, content: {
             Alert(title: Text("Error"), message: Text(errMsg), dismissButton: .default(Text("Ok")){
-                questionairesModel.error = nil
+                questionnairesModel.error = nil
             })
         })
     }
@@ -93,9 +91,9 @@ struct BrowseNewSurveysView: View {
     func loadData() {
         let group = DispatchGroup()
         group.enter()
-        questionairesModel.loadQuestionaire(g: group)
+        questionnairesModel.loadQuestionnaire(g: group)
         group.notify(queue: DispatchQueue.main) {
-            if let e = questionairesModel.error {
+            if let e = questionnairesModel.error {
                 if e.description == "Unauthorized" {
                     tok = nil
                     userID = nil
@@ -103,10 +101,10 @@ struct BrowseNewSurveysView: View {
                 errMsg = e.description
                 showAlert = true
             } else {
-                for _ in questionairesModel.surveys ?? [] {
+                for _ in questionnairesModel.surveys ?? [] {
                     isActive.append(false)
                 }
-                questionaires = questionairesModel.surveys ?? []
+                questionnaires = questionnairesModel.surveys ?? []
             }
         }
         

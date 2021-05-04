@@ -14,10 +14,10 @@ struct MySurveysView: View {
     @Default(.userID) var userID
     
     @StateObject
-    var myQModel = MyQuestionairesModel()
+    var myQModel = MyQuestionnairesModel()
     
-    @State private var activated = [QuestionairePrivate]()
-    @State private var deactivated = [QuestionairePrivate]()
+    @State private var activated = [QuestionnairePrivate]()
+    @State private var deactivated = [QuestionnairePrivate]()
     
     
     @State var showingAlert = false
@@ -54,8 +54,8 @@ struct MySurveysView: View {
                         Text("There are no active surveys")
                     } else {
                         ForEach(activated.indices, id: \.self) { i in
-                            NavigationLink(destination: QuestionaireResultsView(surveyID: activated[i].id, closed: false)) {
-                                MainPageSurveyPreview(questionaire: PublicQuestionnaire(id: activated[i].id, tags: activated[i].tags, title: activated[i].title, description: activated[i].description, closeAfterDate: activated[i].closeAfterDate, nQuestions: activated[i].nQuestions, tokens: activated[i].tokens, image: activated[i].img))
+                            NavigationLink(destination: QuestionnaireResultsView(surveyID: activated[i].id, closed: false)) {
+                                MainPageSurveyPreview(questionnaire: PublicQuestionnaire(id: activated[i].id, tags: activated[i].tags, title: activated[i].title, description: activated[i].description, closeAfterDate: activated[i].closeAfterDate, nQuestions: activated[i].nQuestions, tokens: activated[i].tokens, image: activated[i].img))
                             }
                         }
                     }
@@ -65,8 +65,8 @@ struct MySurveysView: View {
                         Text("There are no closed surveys")
                     } else {
                         ForEach(deactivated.indices, id: \.self) { i in
-                            NavigationLink(destination: QuestionaireResultsView(surveyID: deactivated[i].id, closed: true)) {
-                                MainPageSurveyPreview(questionaire: PublicQuestionnaire(id: deactivated[i].id, tags: deactivated[i].tags, title: deactivated[i].title, description: deactivated[i].description, closeAfterDate: deactivated[i].closeAfterDate, nQuestions: deactivated[i].nQuestions, tokens: deactivated[i].tokens, image: deactivated[i].img))
+                            NavigationLink(destination: QuestionnaireResultsView(surveyID: deactivated[i].id, closed: true)) {
+                                MainPageSurveyPreview(questionnaire: PublicQuestionnaire(id: deactivated[i].id, tags: deactivated[i].tags, title: deactivated[i].title, description: deactivated[i].description, closeAfterDate: deactivated[i].closeAfterDate, nQuestions: deactivated[i].nQuestions, tokens: deactivated[i].tokens, image: deactivated[i].img))
                             }
                         }
                     }
@@ -87,7 +87,7 @@ struct MySurveysView: View {
             if let id = UUID(uuidString: iid){
                 let group = DispatchGroup()
                 group.enter()
-                myQModel.loadQuestionaires(id: id, g: group)
+                myQModel.loadQuestionnaires(id: id, g: group)
                 group.notify(queue: DispatchQueue.main) {
                     if let e = myQModel.error {
                         errMsg = e.description

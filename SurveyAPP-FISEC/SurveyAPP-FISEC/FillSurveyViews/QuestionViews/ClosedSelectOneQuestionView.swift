@@ -71,6 +71,6 @@ struct ClosedSelectOneQuestionView: View {
 
 struct ClosedSelectOneQuestionView_Previews: PreviewProvider {
     static var previews: some View {
-        ClosedSelectOneQuestionView(tmpAnswer: TemporaryAnswerClass() ,encodedOption: "{ \n options: [\"asdf\",\n \"haha\"], \n selected: 0 \n }", index: 0, noAnswerYet: FinalAnswer(userID: "", aType: .ClosedSelectOne, answer: "", selected: [-1], question: "", questionaire: UUID(), index: 2, options: []))
+        ClosedSelectOneQuestionView(tmpAnswer: TemporaryAnswerClass() ,encodedOption: "{ \n options: [\"asdf\",\n \"haha\"], \n selected: 0 \n }", index: 0, noAnswerYet: FinalAnswer(userID: "", aType: .ClosedSelectOne, answer: "", selected: [-1], question: "", questionnaire: UUID(), index: 2, options: []))
     }
 }

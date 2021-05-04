@@ -17,7 +17,7 @@ class QnairesModel: GeneralModel, ObservableObject {
     
     /// Loads surveys
     /// - Parameter g: dispatch group
-    func loadQuestionaire(g: DispatchGroup) {
+    func loadQuestionnaire(g: DispatchGroup) {
         _loadData(g: g)
     }
     

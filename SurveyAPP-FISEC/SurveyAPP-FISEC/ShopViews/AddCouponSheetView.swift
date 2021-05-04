@@ -39,7 +39,6 @@ struct AddCouponSheetView: View {
                 Spacer()
                 Button(action: {
                     saveAndSend()
-                    presentationMode.wrappedValue.dismiss()
                 }) {
                     Text("Save")
                 }.alert(isPresented: $showAlert, content: {
@@ -50,6 +49,7 @@ struct AddCouponSheetView: View {
                     } else {
                         return Alert(title: Text("Success:"), message: Text("Coupon successfully added."), dismissButton: .default(Text("Ok")){
                             couponModel.error = nil
+                            presentationMode.wrappedValue.dismiss()
                         })
                     }
                 })

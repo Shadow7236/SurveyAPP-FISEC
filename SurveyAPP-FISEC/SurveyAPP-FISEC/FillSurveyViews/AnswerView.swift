@@ -21,7 +21,7 @@ struct AnswerView: View {
     @State var selectedOptions: [Int] = []
     
     var index: Int
-    var questionaireID: UUID
+    var questionnaireID: UUID
     
     @State var isSpecialSel = false
     @State var nAnswer: String = ""
@@ -39,7 +39,7 @@ struct AnswerView: View {
     @ViewBuilder
     func getView() -> some View {
         if let usrID = Defaults[.userID] {
-            let noAnswerYet = FinalAnswer(userID: usrID, aType: question.qType, answer: "", selected: [], question: question.qText, questionaire: question.belongsToQuestionaire.id, index: question.index, options: [])
+            let noAnswerYet = FinalAnswer(userID: usrID, aType: question.qType, answer: "", selected: [], question: question.qText, questionnaire: question.belongsToQuestionnaire.id, index: question.index, options: [])
             switch question.qType {
             case .Opened:
                 OpenedQuestionView(tmpAnswer: tmpAnswer, encodedOption: question.qOptions, index: index, noAnswerYet: noAnswerYet)
@@ -64,6 +64,6 @@ struct AnswerView: View {
 
 struct AnswerView_Previews: PreviewProvider {
     static var previews: some View {
-        AnswerView(tmpAnswer: TemporaryAnswerClass(), question: Question(id: UUID(), belongsToQuestionaire: BelongsTo(id: UUID()), qText: "", qType: .Opened, qOptions: "{\ndefault: \"sadf\"\n}", index: -1), newAnswer: "", index: 0, questionaireID: UUID())
+        AnswerView(tmpAnswer: TemporaryAnswerClass(), question: Question(id: UUID(), belongsToQuestionnaire: BelongsTo(id: UUID()), qText: "", qType: .Opened, qOptions: "{\ndefault: \"sadf\"\n}", index: -1), newAnswer: "", index: 0, questionnaireID: UUID())
     }
 }

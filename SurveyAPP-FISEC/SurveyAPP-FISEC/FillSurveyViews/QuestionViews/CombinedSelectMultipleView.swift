@@ -28,8 +28,8 @@ struct CombinedSelectMultipleView: View {
                     if i != a.options.count-1 {
                         Button(action: {
                             if a.selected.contains(i) {
-                                if let index = tmpAnswer.tmpAnswer?.selected.firstIndex(of: i){
-                                    tmpAnswer.tmpAnswer?.selected.remove(at: index)
+                                if let ind = tmpAnswer.tmpAnswer?.selected.firstIndex(of: i){
+                                    tmpAnswer.tmpAnswer?.selected.remove(at: ind)
                                 }
                             } else {
                                 tmpAnswer.tmpAnswer?.selected.append(i)
@@ -116,6 +116,6 @@ struct CombinedSelectMultipleView: View {
 
 struct CombinedSelectMultipleView_Previews: PreviewProvider {
     static var previews: some View {
-        CombinedSelectMultipleView(tmpAnswer: TemporaryAnswerClass(), encodedOption: "encoded coptions", index: 0, noAnswerYet: FinalAnswer(userID: "", aType: .CombinedMultiple, answer: "", selected: [], question: "", questionaire: UUID(), index: 0, options: []))
+        CombinedSelectMultipleView(tmpAnswer: TemporaryAnswerClass(), encodedOption: "encoded coptions", index: 0, noAnswerYet: FinalAnswer(userID: "", aType: .CombinedMultiple, answer: "", selected: [], question: "", questionnaire: UUID(), index: 0, options: []))
     }
 }

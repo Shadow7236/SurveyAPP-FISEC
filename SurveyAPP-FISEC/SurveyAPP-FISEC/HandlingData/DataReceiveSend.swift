@@ -8,8 +8,8 @@
 import Foundation
 
 /// Server urls
-let _serverURL = "https://fisec.herokuapp.com"
-//let _serverURL = "http://127.0.0.1:8080"
+//let _serverURL = "https://fisec.herokuapp.com"
+let _serverURL = "http://127.0.0.1:8080"
 
 /// Known HTTP error codes
 enum HTTPError: String, LocalizedError {
@@ -53,14 +53,14 @@ struct FinalAnswer: Codable, Equatable {
     var answer: String
     var selected: [Int]
     var question: String
-    var questionaire: UUID
+    var questionnaire: UUID
     var index: Int
     var options: [String]
 }
 
 
 /// Private representation of survey
-struct QuestionairePrivate: Codable {
+struct QuestionnairePrivate: Codable {
     var id: UUID
     var title: String
     var description: String
@@ -76,7 +76,7 @@ struct QuestionairePrivate: Codable {
 
 /// Struct for creating survey
 struct CreateSurvey: Codable {
-    var questionaire: Questionaire
+    var questionnaire: Questionnaire
     var questions: [Question]
 }
 
@@ -111,7 +111,7 @@ struct QuestionIndexStruct: Equatable {
     /// - Returns: true if questions are same
     static func == (lhs: QuestionIndexStruct, rhs: QuestionIndexStruct) -> Bool {
         if lhs.index == rhs.index {
-            if lhs.question.id == rhs.question.id && lhs.question.belongsToQuestionaire.id == rhs.question.belongsToQuestionaire.id && lhs.question.qOptions == rhs.question.qOptions && lhs.question.qText == rhs.question.qText && lhs.question.qType == rhs.question.qType{
+            if lhs.question.id == rhs.question.id && lhs.question.belongsToQuestionnaire.id == rhs.question.belongsToQuestionnaire.id && lhs.question.qOptions == rhs.question.qOptions && lhs.question.qText == rhs.question.qText && lhs.question.qType == rhs.question.qType{
                 return true
             }
         }
@@ -135,7 +135,7 @@ struct BoughtCouponPublic: Codable {
 /// Represents question
 struct Question: Codable {
     var id: UUID
-    var belongsToQuestionaire: BelongsTo
+    var belongsToQuestionnaire: BelongsTo
     var qText: String
     var qType: QuestionTypes
     var qOptions: String
@@ -183,13 +183,19 @@ struct QuestionResult: Codable {
     var optionsPercentage: [Double]
 }
 
-/// Struct for exporting results
-struct ExportResult: Codable {
+/// Struct for exporting question results
+struct ExportResults: Codable {
     var question: String
     var options: [String]?
     var qType: QuestionTypes
     var stringAnswers: [String]?
     var optionsPercentage: [Double]?
+}
+
+/// Struct for exporting survey results
+struct ExportResult: Codable {
+    var numberOfRespondents: Int
+    var results: [ExportResults]
 }
 
 
@@ -204,7 +210,7 @@ struct BelongsTo: Codable {
 }
 
 /// Represents public part of questionnaire
-struct Questionaire: Codable {
+struct Questionnaire: Codable {
     var id: UUID
     var createdBy: BelongsTo
     var title: String

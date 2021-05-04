@@ -120,7 +120,7 @@ struct EditQuestionView: View {
                 break
             }
             if data != "" {
-                question = QuestionIndexStruct(question: Question(id: source.id, belongsToQuestionaire: source.belongsToQuestionaire, qText: questionText, qType: selection, qOptions:  data, index: source.index), index: index)
+                question = QuestionIndexStruct(question: Question(id: source.id, belongsToQuestionnaire: source.belongsToQuestionnaire, qText: questionText, qType: selection, qOptions:  data, index: source.index), index: index)
                 return true
             } else {
                 alertMsg = "Unexpected error"
@@ -199,16 +199,17 @@ struct EditQuestionView: View {
             List {
                 if !optionElements.isEmpty {
                     ForEach(optionElements, id: \.0) { (index, text) in
+                        if answers.textArray.count > index {
                         let a = $answers.textArray[index]
-                        HStack {
-                            TextField("Option", text: a)
-                            Spacer()
-                            Button(action: {
-                                print(index, text)
-                                answers.textArray.remove(at: index)
-                                optionElements = Array(zip(0..., answers.textArray))
-                            }){
-                                Image(systemName: "xmark")
+                            HStack {
+                                TextField("Option", text: a)
+                                Spacer()
+                                Button(action: {
+                                    answers.textArray.remove(at: index)
+                                    optionElements = Array(zip(0..., answers.textArray))
+                                }){
+                                    Image(systemName: "xmark")
+                                }
                             }
                         }
                     }
@@ -269,7 +270,7 @@ struct EditQuestionView: View {
 
 struct EditQuestionView_Previews: PreviewProvider {
     static var previews: some View {
-        EditQuestionView(question: .constant(QuestionIndexStruct(question :Question(id: UUID(), belongsToQuestionaire: BelongsTo(id: UUID()), qText: "adsad", qType: .ClosedSelectOne, qOptions: "asdf", index: -1), index: 20)), source: Question(id: UUID(), belongsToQuestionaire: BelongsTo(id: UUID()), qText: "adsad", qType: .ClosedSelectOne, qOptions: "asdf", index: -1), questionText: "asdf", selection: .ClosedSelectOne, index: 20)
+        EditQuestionView(question: .constant(QuestionIndexStruct(question :Question(id: UUID(), belongsToQuestionnaire: BelongsTo(id: UUID()), qText: "adsad", qType: .ClosedSelectOne, qOptions: "asdf", index: -1), index: 20)), source: Question(id: UUID(), belongsToQuestionnaire: BelongsTo(id: UUID()), qText: "adsad", qType: .ClosedSelectOne, qOptions: "asdf", index: -1), questionText: "asdf", selection: .ClosedSelectOne, index: 20)
     }
 }
 

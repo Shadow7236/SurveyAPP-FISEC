@@ -23,7 +23,7 @@ struct CreateQuestionView: View {
     
     @Binding var questions: [Question]
     
-    var questionaireID: UUID
+    var questionnaireID: UUID
     
     @State private var questionText = ""
     @State private var newAnswer = ""
@@ -64,7 +64,7 @@ struct CreateQuestionView: View {
             trailing:
                 Button(action: {
                     if saveQuestion() {
-                        answers.textArray = [""]
+                        self.answers.textArray = []
                         self.mode.wrappedValue.dismiss()
                     }
                 }){
@@ -83,7 +83,7 @@ struct CreateQuestionView: View {
         do {
             switch selection {
             case .Opened:
-                try questions.append(Question(id: UUID(), belongsToQuestionaire: BelongsTo(id: questionaireID), qText: questionText, qType: selection, qOptions:  String(data: JSONEncoder().encode(DatabaseOpenedQuestion(def: openEndAnswer, answer: "")), encoding: .utf8) ?? "", index: questions.count))
+                try questions.append(Question(id: UUID(), belongsToQuestionnaire: BelongsTo(id: questionnaireID), qText: questionText, qType: selection, qOptions:  String(data: JSONEncoder().encode(DatabaseOpenedQuestion(def: openEndAnswer, answer: "")), encoding: .utf8) ?? "", index: questions.count))
                 return true
             case .ClosedSelectMultiple:
                 if answers.textArray.count < 2 {
@@ -91,7 +91,14 @@ struct CreateQuestionView: View {
                     showAlert = true
                     return false
                 }
-                try questions.append(Question(id: UUID(), belongsToQuestionaire: BelongsTo(id:questionaireID), qText: questionText, qType: selection, qOptions:  String(data: JSONEncoder().encode(DatabaseClosedSelectMultipleQuestion(options: answers.textArray, selected: [0])), encoding: .utf8) ?? "", index: questions.count))
+                for item in answers.textArray {
+                    if item == "" {
+                        alertMsg = "There can't be empty option"
+                        showAlert = true
+                        return false
+                    }
+                }
+                try questions.append(Question(id: UUID(), belongsToQuestionnaire: BelongsTo(id:questionnaireID), qText: questionText, qType: selection, qOptions:  String(data: JSONEncoder().encode(DatabaseClosedSelectMultipleQuestion(options: answers.textArray, selected: [0])), encoding: .utf8) ?? "", index: questions.count))
                 return true
             case .ClosedSelectOne:
                 if answers.textArray.count < 2 {
@@ -99,7 +106,14 @@ struct CreateQuestionView: View {
                     showAlert = true
                     return false
                 }
-                try questions.append(Question(id: UUID(), belongsToQuestionaire: BelongsTo(id: questionaireID), qText: questionText, qType: selection, qOptions:  String(data: JSONEncoder().encode(DatabaseClosedSelectOneQuestion(options: answers.textArray, selected: 0)), encoding: .utf8) ?? "", index: questions.count))
+                for item in answers.textArray {
+                    if item == "" {
+                        alertMsg = "There can't be empty option"
+                        showAlert = true
+                        return false
+                    }
+                }
+                try questions.append(Question(id: UUID(), belongsToQuestionnaire: BelongsTo(id: questionnaireID), qText: questionText, qType: selection, qOptions:  String(data: JSONEncoder().encode(DatabaseClosedSelectOneQuestion(options: answers.textArray, selected: 0)), encoding: .utf8) ?? "", index: questions.count))
                 return true
             case .CombinedOne:
                 if optionName == "" {
@@ -112,7 +126,14 @@ struct CreateQuestionView: View {
                     showAlert = true
                     return false
                 }
-                try questions.append(Question(id: UUID(), belongsToQuestionaire: BelongsTo(id: questionaireID), qText: questionText, qType: selection, qOptions:  String(data: JSONEncoder().encode(DatabaseCombinedSelectOneQuestion(def: openEndAnswer, options: answers.textArray, selected: 0, otherOptionName: optionName, answer: "")), encoding: .utf8) ?? "", index: questions.count))
+                for item in answers.textArray {
+                    if item == "" {
+                        alertMsg = "There can't be empty option"
+                        showAlert = true
+                        return false
+                    }
+                }
+                try questions.append(Question(id: UUID(), belongsToQuestionnaire: BelongsTo(id: questionnaireID), qText: questionText, qType: selection, qOptions:  String(data: JSONEncoder().encode(DatabaseCombinedSelectOneQuestion(def: openEndAnswer, options: answers.textArray, selected: 0, otherOptionName: optionName, answer: "")), encoding: .utf8) ?? "", index: questions.count))
                 return true
             case .CombinedMultiple:
                 if optionName == "" {
@@ -125,7 +146,14 @@ struct CreateQuestionView: View {
                     showAlert = true
                     return false
                 }
-                try questions.append(Question(id: UUID(), belongsToQuestionaire: BelongsTo(id: questionaireID), qText: questionText, qType: selection, qOptions:  String(data: JSONEncoder().encode(DatabaseCombinedSelectMultipleQuestion(def: openEndAnswer, options: answers.textArray, selected: [0], otherOptionName: optionName, answer: "")), encoding: .utf8) ?? "", index: questions.count))
+                for item in answers.textArray {
+                    if item == "" {
+                        alertMsg = "There can't be empty option"
+                        showAlert = true
+                        return false
+                    }
+                }
+                try questions.append(Question(id: UUID(), belongsToQuestionnaire: BelongsTo(id: questionnaireID), qText: questionText, qType: selection, qOptions:  String(data: JSONEncoder().encode(DatabaseCombinedSelectMultipleQuestion(def: openEndAnswer, options: answers.textArray, selected: [0], otherOptionName: optionName, answer: "")), encoding: .utf8) ?? "", index: questions.count))
                 return true
             }
         } catch {
@@ -183,7 +211,6 @@ struct CreateQuestionView: View {
                             Spacer()
                             if answers.textArray.count > 1{
                                 Button(action: {
-                                    print(index, text)
                                     answers.textArray.remove(at: index)
                                 }){
                                     Image(systemName: "xmark")
@@ -215,7 +242,7 @@ struct CreateQuestionView: View {
 struct CreateQuestionView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            CreateQuestionView(questions: .constant([]), questionaireID: UUID()).previewDevice("iPhone 11")
+            CreateQuestionView(questions: .constant([]), questionnaireID: UUID()).previewDevice("iPhone 11")
         }
     }
 }

@@ -13,7 +13,7 @@ struct MultiLineTF: UIViewRepresentable {
     var placeholder: String
     
     func makeCoordinator() -> MultiLineTF.Coordinator {
-        return MultiLineTF.Coordinator(parent1: self)
+        return MultiLineTF.Coordinator(parent1: self, plc: placeholder)
     }
     
     func makeUIView(context: UIViewRepresentableContext<MultiLineTF>) -> UITextView {
@@ -34,9 +34,11 @@ struct MultiLineTF: UIViewRepresentable {
     
     class Coordinator: NSObject, UITextViewDelegate {
         var parent: MultiLineTF
+        var plc: String
         
-        init(parent1: MultiLineTF){
+        init(parent1: MultiLineTF, plc: String){
             parent = parent1
+            self.plc = plc
         }
         
         func textViewDidChange(_ textView: UITextView) {

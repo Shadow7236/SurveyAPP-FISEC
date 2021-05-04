@@ -69,6 +69,6 @@ struct OpenedQuestionView: View {
 
 struct OpenedQuestionView_Previews: PreviewProvider {
     static var previews: some View {
-        OpenedQuestionView(tmpAnswer: TemporaryAnswerClass(), encodedOption: "{\ndefaultAnswer: \"asdf\"\n}", index: 0, noAnswerYet: FinalAnswer(userID: "", aType: .Opened, answer: "", selected: [], question: "", questionaire: UUID(), index: 2, options: []))
+        OpenedQuestionView(tmpAnswer: TemporaryAnswerClass(), encodedOption: "{\ndefaultAnswer: \"asdf\"\n}", index: 0, noAnswerYet: FinalAnswer(userID: "", aType: .Opened, answer: "", selected: [], question: "", questionnaire: UUID(), index: 2, options: []))
     }
 }

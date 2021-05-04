@@ -55,7 +55,8 @@ struct AddedCCardView: View {
                     return Alert(title: Text("Delete?"), message: Text("Do you really want to delete coupon?"), primaryButton: .destructive(Text("Yes")) {
                         sendData()
                     }, secondaryButton: .default(Text("No")))
-                    
+                case 2:
+                    return Alert(title: Text("Success"), message: Text("Coupon has been successfully deleted"), dismissButton: .default(Text("Ok")))
                 default:
                     return Alert(title: Text("Error"), message: Text(errorMsg), dismissButton: .default(Text("Ok")){
                         addedModel.error = nil
@@ -75,6 +76,9 @@ struct AddedCCardView: View {
             if let e = addedModel.error {
                 errorMsg = e.description
                 chooseAlert = 1
+                showingAlert = true
+            } else {
+                chooseAlert = 2
                 showingAlert = true
             }
         }

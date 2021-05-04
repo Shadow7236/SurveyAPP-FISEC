@@ -1,5 +1,5 @@
 //
-//  QuestionaireResultsView.swift
+//  QuestionnaireResultsView.swift
 //  SurveyAPP-FISEC
 //
 
@@ -7,12 +7,12 @@ import Combine
 import SwiftUI
 
 /// View for showing survey results
-struct QuestionaireResultsView: View {
+struct QuestionnaireResultsView: View {
     @State var surveyID: UUID
     @State private var results = [QuestionResult]()
     
     @StateObject
-    var myQModel = MyQuestionairesModel()
+    var myQModel = MyQuestionnairesModel()
     
     @StateObject
     var answerModel = ResultModel()
@@ -63,7 +63,7 @@ struct QuestionaireResultsView: View {
                     trailing: Button(action: {
                         /// Creted by Dawy
                         /// Taken from https://stackoverflow.com/a/54031361
-                        let export = prepareData(results: results)
+                        let export = prepareData(results: results, nRes: part)
                         
                         let fm = FileManager.default
                         let fileFolder = fm.urls(for: .documentDirectory, in: .userDomainMask).first!
@@ -108,9 +108,11 @@ struct QuestionaireResultsView: View {
             switch chooseAlert {
             case 0:
                 return Alert(title: Text("Close?"), message: Text("Do you really want to close this survey?"), primaryButton: .destructive(Text("Yes")) {
-                    closeQuestionaire()
+                    closeQuestionnaire()
                     
                 }, secondaryButton: .default(Text("No")))
+            case 2:
+                return Alert(title: Text("Success"), message: Text("Successfully closed survey."), dismissButton: .default(Text("Ok")))
             default:
                 return Alert(title: Text("Error"), message: Text(errMsg), dismissButton: .default(Text("Ok")){
                     myQModel.error = nil
@@ -122,7 +124,7 @@ struct QuestionaireResultsView: View {
     
     
     /// Closes survey
-    func closeQuestionaire() {
+    func closeQuestionnaire() {
         let group = DispatchGroup()
         group.enter()
         myQModel.delete(g: group, delID: surveyID)
@@ -130,6 +132,9 @@ struct QuestionaireResultsView: View {
             if let e = myQModel.error {
                 errMsg = e.description
                 chooseAlert = 1
+                showingAlert = true
+            } else {
+                chooseAlert = 2
                 showingAlert = true
             }
         }
@@ -150,7 +155,6 @@ struct QuestionaireResultsView: View {
                     errMsg = err.description
                     showingAlert = true
                 }
-                closed = true
                 results = answerModel.results?.results ?? []
                 part = answerModel.results?.nRespondents ?? 0
             }
@@ -158,8 +162,8 @@ struct QuestionaireResultsView: View {
     }
 }
 
-struct QuestionaireResultsView_Previews: PreviewProvider {
+struct QuestionnaireResultsView_Previews: PreviewProvider {
     static var previews: some View {
-        QuestionaireResultsView(surveyID: UUID(), closed: false)
+        QuestionnaireResultsView(surveyID: UUID(), closed: false)
     }
 }

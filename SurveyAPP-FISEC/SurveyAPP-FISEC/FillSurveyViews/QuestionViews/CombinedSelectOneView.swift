@@ -114,6 +114,6 @@ struct CombinedSelectOneView: View {
 
 struct CombinedSelectOneView_Previews: PreviewProvider {
     static var previews: some View {
-        CombinedSelectOneView(tmpAnswer: TemporaryAnswerClass(  ), encodedOption: "", index: 0, noAnswerYet: FinalAnswer(userID: "", aType: .CombinedOne, answer: "", selected: [-1], question: "", questionaire: UUID(), index: 0, options: []))
+        CombinedSelectOneView(tmpAnswer: TemporaryAnswerClass(  ), encodedOption: "", index: 0, noAnswerYet: FinalAnswer(userID: "", aType: .CombinedOne, answer: "", selected: [-1], question: "", questionnaire: UUID(), index: 0, options: []))
     }
 }

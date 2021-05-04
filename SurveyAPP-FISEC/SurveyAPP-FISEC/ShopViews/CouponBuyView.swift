@@ -69,7 +69,7 @@ struct CouponBuyView: View {
                         return Alert(title: Text("Error:"), message: Text("You don't have enough tokens."), dismissButton: .default(Text("Ok")))
                     }
                 case 2:
-                    return Alert(title: Text("Success"), message: Text("You have successfully bough coupon. You can find it in your profile."), dismissButton: .default(Text("Ok")))
+                    return Alert(title: Text("Success"), message: Text("You have successfully bought coupon. You can find it in your profile."), dismissButton: .default(Text("Ok")))
                 default:
                     return Alert(title: Text("Error"), message: Text(erromMsg), dismissButton: .default(Text("Ok")){
                         buyCouponModel.error = nil

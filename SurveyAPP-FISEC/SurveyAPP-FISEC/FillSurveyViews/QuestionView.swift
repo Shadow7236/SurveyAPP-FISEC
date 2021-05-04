@@ -29,10 +29,9 @@ struct QuestionView: View {
     
     @StateObject
     var answerModel = AnswerModel()
-    var questionaireID: UUID
+    var questionnaireID: UUID
     @State var showAlert: Bool = false
     @State var errTitle = "Error:"
-    
     var body: some View {
         VStack {
             if index < questions.count {
@@ -49,7 +48,7 @@ struct QuestionView: View {
                     .lineLimit(nil)
                     .padding(.leading)
                     .padding(.trailing)
-                AnswerView(tmpAnswer: tmpAnswer, question: questions[index], newAnswer: newStringAnswer, index: index, questionaireID: questionaireID)
+                AnswerView(tmpAnswer: tmpAnswer, question: questions[index], newAnswer: newStringAnswer, index: index, questionnaireID: questionnaireID)
             } else {
                 VStack{
                     ProgressView()
@@ -141,7 +140,7 @@ struct QuestionView: View {
     func loadData() {
         let group = DispatchGroup()
         group.enter()
-        questionModel.loadQuestion(id: questionaireID, g: group)
+        questionModel.loadQuestion(id: questionnaireID, g: group)
         group.notify(queue: DispatchQueue.main) {
             if let e = questionModel.error {
                 errMsg = e.description
@@ -193,7 +192,7 @@ struct QuestionView: View {
 
 struct QuestionView_Previews: PreviewProvider {
     static var previews: some View {
-        let a = Question(id: UUID(), belongsToQuestionaire: BelongsTo(id: UUID()), qText: "Question?", qType: .Opened, qOptions: "sadf", index: -1)
-        QuestionView(questions: [a], index: 0, shouldPopToRootView: .constant(false), meActive: .constant(true), questionaireID: UUID())
+        let a = Question(id: UUID(), belongsToQuestionnaire: BelongsTo(id: UUID()), qText: "Question?", qType: .Opened, qOptions: "sadf", index: -1)
+        QuestionView(questions: [a], index: 0, shouldPopToRootView: .constant(false), meActive: .constant(true), questionnaireID: UUID())
     }
 }

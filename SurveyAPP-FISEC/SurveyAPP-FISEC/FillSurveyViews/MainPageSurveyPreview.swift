@@ -9,11 +9,11 @@ import SwiftUI
 
 /// View for showing survey preview
 struct MainPageSurveyPreview: View {
-    @State var questionaire: PublicQuestionnaire
+    @State var questionnaire: PublicQuestionnaire
     
     var body: some View {
         HStack {
-            if questionaire.image == nil {
+            if questionnaire.image == nil {
                 Image("SurveyPlaceHolder")
                     .resizable()
                     .scaledToFit()
@@ -27,12 +27,12 @@ struct MainPageSurveyPreview: View {
             }
             VStack {
                 HStack {
-                    Text(questionaire.title)
+                    Text(questionnaire.title)
                         .font(.title2)
                     Spacer()
                     VStack {
                         HStack{
-                            Text(String(format:  "%.2f", questionaire.tokens)) 
+                            Text(String(format:  "%.2f", questionnaire.tokens))
                             Image(systemName: "circlebadge.2.fill")
                         }
                         .font(.footnote)
@@ -42,10 +42,10 @@ struct MainPageSurveyPreview: View {
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
                 HStack {
-                    if !questionaire.tags.isEmpty {
+                    if !questionnaire.tags.isEmpty {
                         ScrollView (.horizontal, showsIndicators: false) {
                             HStack { 
-                                ForEach(questionaire.tags, id: \.id) { t in
+                                ForEach(questionnaire.tags, id: \.id) { t in
                                     Text(t.name)
                                         .font(.caption)
                                         .frame(width: CGFloat((t.name.count)) * 9, height: 25, alignment: .center)
@@ -65,8 +65,8 @@ struct MainPageSurveyPreview: View {
 
 struct MainPageSurveyPreview_Previews: PreviewProvider {
     static var previews: some View {        
-        let questionaire = PublicQuestionnaire(id: UUID(), tags: [], title: "Title", description: "Description", closeAfterDate: "22.12.1222", nQuestions: 3, tokens: 200,  image: nil)
-        MainPageSurveyPreview(questionaire: questionaire).previewDevice("iPhone 11")
+        let questionnaire = PublicQuestionnaire(id: UUID(), tags: [], title: "Title", description: "Description", closeAfterDate: "22.12.1222", nQuestions: 3, tokens: 200,  image: nil)
+        MainPageSurveyPreview(questionnaire: questionnaire).previewDevice("iPhone 11")
     }
 }
 
